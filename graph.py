@@ -23,15 +23,15 @@ def generate_random_connected_graph(num_nodes, min_connections=3, max_connection
         if nx.is_connected(graph):
             return graph
 
-# Set the number of peers
-num_peers = 10
+# # Set the number of peers
+# num_peers = 10
 
-# Generate a random connected graph
-random_connected_graph = generate_random_connected_graph(num_peers)
+# # Generate a random connected graph
+# random_connected_graph = generate_random_connected_graph(num_peers)
 
-# Print the edges of the graph
-print("Edges of the Random Connected Graph:")
-print(random_connected_graph.edges())
+# # Print the edges of the graph
+# print("Edges of the Random Connected Graph:")
+# print(random_connected_graph.edges())
 
-# You can visualize the graph using networkx
-nx.draw(random_connected_graph, with_labels=True)
+# # You can visualize the graph using networkx
+# nx.draw(random_connected_graph, with_labels=True)

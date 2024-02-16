@@ -7,22 +7,27 @@ import random
 import numpy as np
 import simpy
 import time
-import graph
+from graph import generate_random_connected_graph
 from threading import Thread
+from scheduler import PriorityQueueScheduler
 
-interarrival_mean_time = 5
+scheduler = PriorityQueueScheduler()
+scheduler_thread = Thread(target=scheduler.run)
+scheduler_thread.start()
+
+interarrival_mean_time = 9
 coins_per_transaction = 1
-size_of_transaction = 1024*8    # bits
-N = 50
+size_of_transaction = 8    # kilo-bits
+N = 5
 z0 = 0.5
 z1 = 0.5
-rho_ij = np.random.randint(10, 500)     # ms - light propagation delay
+rho = random.random()*490 + 10     # ms - light propagation delay
 
 peers = []
 peers_slow = np.random.choice(N, int(z0*N), replace=False)
 peers_low_cpu = np.random.choice(N, int(z1*N), replace=False)
 
-start = time.time()
+start = time.perf_counter()
 
 all_transactions = []
 class Transaction:
@@ -59,30 +64,31 @@ class Peer:
             yield env.timeout(tim)
             tx = Transaction(self, random.choice(peers[:self.id]+peers[self.id+1:]), coins_per_transaction)
             self.transactions.append(tx)
-            print("Generating by ", self.id, "at ", time.time() - start)
+            print("Generating by ", self.id, "at ", time.perf_counter() - start)
             print(tx)
             thread = Thread(target=self.broadcast, args=(tx,))
             thread.start()
 
+    def get_latency(self, peer, size):
+        c_ij = 100 if (self.speed and peer.speed) else 5
+        d_ij = np.random.exponential(96/c_ij)
+        latency = rho + (size/c_ij) + d_ij
+        return latency / 1000
+
     def broadcast(self, tx):
         if tx not in self.queue:
-            print("Transaction ", tx, " received by ", self.id)
+            print("Transaction ", tx, " received by ", self.id, "at", time.perf_counter() - start)
             self.queue[tx]
-
-            pool = ThreadPool(processes=10)
-            def wait_brod(peer,tx,latency) : 
-                time.sleep(latency)
-                peer.broadcast(tx)
-            for result in pool.starmap( wait_brod ,  ((peer,tx, random.randint(2,5) )for peer in self.connections) )  : pass 
-
-
-
+            for peer in self.connections : 
+                latency = self.get_latency(peer, size_of_transaction)
+                print("Transaction ", tx, "from ", self.id, " to ", peer.id, "with delay ", latency, "at", time.perf_counter() - start)
+                scheduler.add_event(latency, 1, peer.broadcast , (tx,) )
     
     def __str__(self) -> str:
         return str(self.id)
 
 
-Network = graph.generate_random_connected_graph(N)
+Network = generate_random_connected_graph(N)
 for i in range(N):
     Peer(i not in peers_slow, i not in peers_low_cpu)
 
@@ -94,6 +100,7 @@ env = simpy.rt.RealtimeEnvironment(factor=1)
 for p in peers:
     env.process(p.generate(env))
 
-env.run(until=5)
+env.run(until=10)
 
 
+scheduler_thread.join()
