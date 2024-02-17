@@ -15,6 +15,11 @@ scheduler = PriorityQueueScheduler()
 scheduler_thread = Thread(target=scheduler.run)
 scheduler_thread.start()
 
+block_publisher = PriorityQueueScheduler()
+block_publisher_thread = Thread(target=block_publisher.run)
+block_publisher_thread.start()
+
+
 interarrival_mean_time = 9
 coins_per_transaction = 1
 size_of_transaction = 8    # kilo-bits
@@ -33,7 +38,8 @@ hash_ratio = {True: 10, False: 1}
 
 start = time.perf_counter()
 
-all_transactions = []
+# all_transactions = []
+
 class Transaction:
     def __init__(self, sender, receiver, coins):
         self.timestamp = time.perf_counter()
@@ -41,8 +47,6 @@ class Transaction:
         self.sender = sender
         self.receiver = receiver
         self.coins = coins
-        self.status = False
-        all_transactions.append(self)
         
     def __hash__(self) -> int:
         return hash(self.txid) 
@@ -51,6 +55,13 @@ class Transaction:
         #TxnID: IDx pays IDy C coins
         return f"{self.txid}: {self.sender} pays {self.receiver} {self.coins} coins"
 
+class CoinBaseTransaction(Transaction) : 
+      def __init__(self, miner):
+          super().__init__(None, miner, 50)
+
+      def __repr__(self):
+          return f"{self.txid}: {self.receiver} mines {self.coins} coins"
+      
 class Block:
     def __init__(self, prev_blkid, creationTime, transactions):
         self.prev_blkid = prev_blkid
@@ -66,7 +77,6 @@ class Block:
 
     def prevblkid(self):
         return self.prev_blkid
-
 
 GENESIS_BLOCK = Block(0, time.time() - start, [])
 
@@ -185,7 +195,7 @@ class Peer:
         peers.append(self)
         self.bitcoins = 0
         self.transactions = []
-        self.queue = defaultdict(time.perf_counter)
+        self.broadcast_transaction_set = set()
         self.connections = []
         self.hash_power = slow_hash_power * hash_ratio[cpu]
          
@@ -209,9 +219,9 @@ class Peer:
     def broadcast(self, msg):
         if isinstance(msg,Transaction) : 
            tx = msg 
-           if tx not in self.queue :
+           if tx not in self.broadcast_transaction_set :
                print("Transaction ", tx, " received by ", self.id, "at", time.perf_counter() - start)
-               self.queue[tx]
+               self.broadcast_transaction_set.add( tx )
                for peer in self.connections : 
                    latency = self.get_latency(peer, size_of_transaction)
                    print("Transaction ", tx, "from ", self.id, " to ", peer.id, "with delay ", latency, "at", time.perf_counter() - start)
@@ -219,8 +229,25 @@ class Peer:
 
         if isinstance(msg,Block) : 
             block = msg 
-         
     
+    def create_blk(self) : 
+        unpublished_transaction = self.broadcast_transaction_set - self.blockchain.get_transactions()
+        no_of_tranasctions = min(unpublished_transaction,random.randint(0,max_tranasactions_per_block -1))
+        coinbase_transaction = CoinBaseTransaction(self) 
+        transactions = [coinbase_transaction] + list( random.sample(unpublished_transaction,no_of_tranasctions) )
+        tk = np.random.exponential( interarrival_mean_time / self.hash_power )
+        block = Block( self.blockchain.get_last_block().blkid , time.time() + tk , transactions )
+        self.publish_block( block , tk )
+
+    def publish_block(self,block,tk) : 
+        def temp_publish_block(peer,block) : 
+            if block.get_previous_block() == peer.blockchain.get_last_block() : 
+               peer.brodcast(block)
+            else : print(f"block aborted :: {block} by peer :: {peer} due to new chain")
+        block_publisher.add_event(tk, temp_publish_block, (self,block))
+        
+
+
     def __str__(self) -> str:
         return str(self.id)
 
