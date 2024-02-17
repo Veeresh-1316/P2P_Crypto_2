@@ -23,6 +23,8 @@ block_publisher_thread.start()
 interarrival_mean_time = 9
 coins_per_transaction = 1
 size_of_transaction = 8    # kilo-bits
+max_transactions_per_block = 1000
+
 N = 5
 z0 = 0.5
 num_slow = int(z0*N)
@@ -70,7 +72,7 @@ class Block:
         self.blkid = hashlib.md5(str([self.prev_blkid, self.creation_time, [str(i) for i in self.transactions]]).encode()).hexdigest()
 
     def size(self):
-        return (1+len(self.transactions)) * size_of_transaction
+        return len(self.transactions) * size_of_transaction
 
     def __hash__(self):
         return hash(self.blkid)
@@ -85,6 +87,9 @@ class BlockChain:
         self.GENESIS_BLOCK = GENESIS_BLOCK
         self.blocks_all = {GENESIS_BLOCK.blkid: GENESIS_BLOCK}
         self.unadded_blocks = []
+
+        self.all_transactions = []
+        self.txn_pool = []
 
         self.depth = {GENESIS_BLOCK.blkid: 0}
         self.balances =  { GENESIS_BLOCK.blkid: np.zeros(N) }
@@ -112,7 +117,30 @@ class BlockChain:
                 valid = False
                 break
         return valid, new_balance
-                
+    
+    def change_mining_branch(self, new_longest_blkid):
+        old_longest_blkid = self.longest_block.blkid
+        old_depth = self.depth[old_longest_blkid]
+        new_depth = self.depth[new_longest_blkid]
+        min_depth = min(old_depth, new_depth)
+
+        ancestor_old = old_longest_blkid
+        ancestor_new = new_longest_blkid
+
+        while min_depth < self.depth[ancestor_old]:
+            ancestor_old = self.blocks_all[ancestor_old].prev_blkid
+        while min_depth < self.depth[ancestor_new]:
+            ancestor_new = self.blocks_all[ancestor_new].prev_blkid
+        while ancestor_old != ancestor_new:
+            ancestor_old = self.blocks_all[ancestor_old].prev_blkid
+            ancestor_new = self.blocks_all[ancestor_new].prev_blkid
+
+        while ancestor_old != old_longest_blkid:
+            if self.blocks_all[old_longest_blkid].transactions[0].sender is None:
+                self.txn_pool.extend(self.blocks_all[old_longest_blkid].transactions[1:])
+            else:
+                self.txn_pool.extend(self.blocks_all[old_longest_blkid].transactions)
+
     def pop_blocks_with_parent(self, block):
         invalid_blocks = []
         for i in self.unadded_blocks:
@@ -141,6 +169,9 @@ class BlockChain:
                 self.balances[i.blkid] = np.copy(new_balance)
                 self.blocks_all[i.blkid] = block
                 self.depth[i.blkid] = self.depth[block.blkid] + 1
+
+                for t in i.transactions:
+                    self.all_transactions.append()
 
                 # AND CHECK AGAIN FOR UNADDED_BLOCKS WITH THIS AS PARENT
                 added_blocks.append(i)
