@@ -75,14 +75,20 @@ class Peer:
         latency = rho + (size/c_ij) + d_ij
         return latency / 1000
 
-    def broadcast(self, tx):
-        if tx not in self.queue:
-            print("Transaction ", tx, " received by ", self.id, "at", time.perf_counter() - start)
-            self.queue[tx]
-            for peer in self.connections : 
-                latency = self.get_latency(peer, size_of_transaction)
-                print("Transaction ", tx, "from ", self.id, " to ", peer.id, "with delay ", latency, "at", time.perf_counter() - start)
-                scheduler.add_event(latency, 1, peer.broadcast , (tx,) )
+    def broadcast(self, msg):
+        if isinstance(msg,Transaction) : 
+           tx = msg 
+           if tx not in self.queue :
+               print("Transaction ", tx, " received by ", self.id, "at", time.perf_counter() - start)
+               self.queue[tx]
+               for peer in self.connections : 
+                   latency = self.get_latency(peer, size_of_transaction)
+                   print("Transaction ", tx, "from ", self.id, " to ", peer.id, "with delay ", latency, "at", time.perf_counter() - start)
+                   scheduler.add_event(latency, peer.broadcast , (tx,) )
+
+        if isinstance(msg,Block) : 
+            block = msg 
+         
     
     def __str__(self) -> str:
         return str(self.id)

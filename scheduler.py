@@ -6,8 +6,9 @@ import time
 class PriorityQueueScheduler:
     def __init__(self):
         self.events = queue.PriorityQueue()
+        
 
-    def add_event(self, delay, priority, func, args):
+    def add_event(self, delay,func, args):
         event = (time.perf_counter() + delay, priority, func, args)
         self.events.put(event)
 
