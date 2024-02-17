@@ -229,6 +229,9 @@ class Peer:
         self.recieved_transactions = set()
         self.connections = []
         self.hash_power = slow_hash_power * hash_ratio[cpu]
+        ### start mining 
+        self.create_and_publish_block()
+
          
     def generate(self, env):
         while True:
@@ -258,9 +261,9 @@ class Peer:
 
         if isinstance(msg,Block) : 
            block = msg 
-           if self.blockchain.add_block(block) : self.create_blk()
+           if self.blockchain.add_block(block) : self.create_and_publish_block()
     
-    def create_blk(self) : 
+    def create_and_publish_block(self) : 
         unpublished_transaction = self.broadcast_transaction_set - set(self.blockchain.txn_pool)
         no_of_tranasctions = min(unpublished_transaction,random.randint(0,max_transactions_per_block -1))
         coinbase_transaction = CoinBaseTransaction(self) 
@@ -293,6 +296,4 @@ for p in peers:
     env.process(p.generate(env))
 
 env.run(until=10)
-
-
 scheduler_thread.join()
