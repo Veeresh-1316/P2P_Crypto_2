@@ -49,21 +49,21 @@ class Transaction:
         self.sender = sender
         self.receiver = receiver
         self.coins = coins
-        
+
     def __hash__(self) -> int:
-        return hash(self.txid) 
-    
+        return hash(self.txid)
+
     def __repr__(self):
         #TxnID: IDx pays IDy C coins
         return f"{self.txid}: {self.sender} pays {self.receiver} {self.coins} coins"
 
-class CoinBaseTransaction(Transaction) : 
+class CoinBaseTransaction(Transaction) :
       def __init__(self, miner):
           super().__init__(None, miner, 50)
 
       def __repr__(self):
           return f"{self.txid}: {self.receiver} mines {self.coins} coins"
-      
+
 class Block:
     def __init__(self, prev_blkid, creationTime, transactions):
         self.prev_blkid = prev_blkid
@@ -93,7 +93,7 @@ class BlockChain:
 
         self.depth = {GENESIS_BLOCK.blkid: 0}
         self.balances =  { GENESIS_BLOCK.blkid: np.zeros(N) }
-        
+
         self.longest_length = 0
         self.longest_block = GENESIS_BLOCK
 
@@ -117,7 +117,7 @@ class BlockChain:
                 valid = False
                 break
         return valid, new_balance
-    
+
     def change_mining_branch(self, new_longest_blkid):
         old_longest_blkid = self.longest_block.blkid
         old_depth = self.depth[old_longest_blkid]
@@ -160,10 +160,10 @@ class BlockChain:
                 # ADD THIS NEW BLOCK TO BLOCKCHAIN
 
                 valid, new_balance = self.is_valid(block)
-            
+
                 if not valid:
                     invalid_blocks.append(i)
-                
+
                 self.balances[i.blkid] = np.copy(new_balance)
                 self.blocks_all[i.blkid] = block
                 self.depth[i.blkid] = self.depth[block.blkid] + 1
@@ -173,7 +173,7 @@ class BlockChain:
 
                 # AND CHECK AGAIN FOR UNADDED_BLOCKS WITH THIS AS PARENT
                 added_blocks.append(i)
-        
+
         for i in invalid_blocks:
             self.pop_blocks_with_parent(i)
             self.unadded_blocks.remove(i)
@@ -183,7 +183,7 @@ class BlockChain:
             if new_length > length:
                 length = new_length
                 blk = new_block
-        
+
         return length, blk
 
     def add_block(self, block):
@@ -197,10 +197,10 @@ class BlockChain:
             self.unadded_blocks.append(block)
         else:
             valid, new_balance = self.is_valid(block)
-            
+
             if not valid:
                 return False
-            
+
             self.balances[blkid] = np.copy(new_balance)
             self.blocks_all[blkid] = block
             self.depth[blkid] = self.depth[parent_id] + 1
@@ -228,11 +228,11 @@ class Peer:
         self.recieved_blocks = set()
         self.recieved_transactions = set()
         self.connections = []
+        self.blockchain = BlockChain()
         self.hash_power = slow_hash_power * hash_ratio[cpu]
-        ### start mining 
+        ### start mining
         self.create_and_publish_block()
 
-         
     def generate(self, env):
         while True:
             tim = np.random.exponential(interarrival_mean_time)
@@ -254,31 +254,34 @@ class Peer:
         queue = self.recieved_transactions if isinstance(msg,Transaction) else self.recieved_blocks
         if msg not in queue:
                queue.add(msg)
-               for peer in self.connections : 
+               for peer in self.connections :
                    latency = self.get_latency(peer, size_of_transaction)
                    print(f"{type(msg)} ", msg , "from ", self.id, " to ", peer.id, "with delay ", latency, "at", time.perf_counter() - start)
                    scheduler.add_event(latency, peer.broadcast , (msg,) )
 
-        if isinstance(msg,Block) : 
-           block = msg 
+        if isinstance(msg,Block) :
+           block = msg
            if self.blockchain.add_block(block) : self.create_and_publish_block()
-    
-    def create_and_publish_block(self) : 
-        unpublished_transaction = self.broadcast_transaction_set - set(self.blockchain.txn_pool)
+
+    def create_and_publish_block(self) :
+        unpublished_transaction = self.broadcast_transaction_set + self.blockchain.all_transactions - self.blockchain.txn_pool
         no_of_tranasctions = min(unpublished_transaction,random.randint(0,max_transactions_per_block -1))
-        coinbase_transaction = CoinBaseTransaction(self) 
+        coinbase_transaction = CoinBaseTransaction(self)
         transactions = [coinbase_transaction] + list( random.sample(unpublished_transaction,no_of_tranasctions) )
         tk = np.random.exponential( interarrival_mean_time / self.hash_power )
         block = Block( self.blockchain.get_last_block().blkid , time.time() + tk , transactions )
         self.publish_block( block , tk )
 
-    def publish_block(self,block:Block,tk) : 
-        def temp_publish_block(peer,block:Block) : 
-            if block.prev_blkid == peer.blockchain.get_last_block().blkid : 
+    def publish_block(self,block:Block,tk) :
+        def temp_publish_block(peer:Peer,block:Block) :
+            if block.prev_blkid == peer.blockchain.get_last_block().blkid :
+               print(f"{peer} is publishing block : {block}")
                peer.brodcast(block)
-            else : print(f"block aborted :: {block} by peer :: {peer} due to new chain")
+            else : 
+                peer.create_and_publish_block()
+                print(f"block aborted :: {block} by peer :: {peer} due to new chain")
         block_publisher.add_event(tk, temp_publish_block, (self,block))
-        
+
     def __str__(self) -> str:
         return str(self.id)
 
@@ -297,8 +300,6 @@ for p in peers:
 
 env.run(until=10)
 scheduler_thread.join()
-
-
 
 
 
@@ -325,5 +326,5 @@ def GenPlot(Blocks):
 
     return g
 
-g = GenPlot(Blocks)
-g.render("Blockchain", format="png")
+# g = GenPlot(Blocks)
+# g.render("Blockchain", format="png")
