@@ -88,8 +88,8 @@ class BlockChain:
         self.blocks_all = {GENESIS_BLOCK.blkid: GENESIS_BLOCK}
         self.unadded_blocks = []
 
-        self.all_transactions = []
-        self.txn_pool = []
+        self.all_transactions = []  ## all transactions in all blockchain
+        self.txn_pool = set()       ## all transactions in longest chain
 
         self.depth = {GENESIS_BLOCK.blkid: 0}
         self.balances =  { GENESIS_BLOCK.blkid: np.zeros(N) }
@@ -128,18 +128,16 @@ class BlockChain:
         ancestor_new = new_longest_blkid
 
         while min_depth < self.depth[ancestor_old]:
+            self.txn_pool = self.txn_pool - set(self.blocks_all[ancestor_old].transactions)
             ancestor_old = self.blocks_all[ancestor_old].prev_blkid
         while min_depth < self.depth[ancestor_new]:
+            self.txn_pool = self.txn_pool + set(self.blocks_all[ancestor_new].transactions)
             ancestor_new = self.blocks_all[ancestor_new].prev_blkid
         while ancestor_old != ancestor_new:
+            self.txn_pool = self.txn_pool - set(self.blocks_all[ancestor_old].transactions)
+            self.txn_pool = self.txn_pool + set(self.blocks_all[ancestor_new].transactions)
             ancestor_old = self.blocks_all[ancestor_old].prev_blkid
             ancestor_new = self.blocks_all[ancestor_new].prev_blkid
-
-        while ancestor_old != old_longest_blkid:
-            if self.blocks_all[old_longest_blkid].transactions[0].sender is None:
-                self.txn_pool.extend(self.blocks_all[old_longest_blkid].transactions[1:])
-            else:
-                self.txn_pool.extend(self.blocks_all[old_longest_blkid].transactions)
 
     def pop_blocks_with_parent(self, block):
         invalid_blocks = []
@@ -171,15 +169,14 @@ class BlockChain:
                 self.depth[i.blkid] = self.depth[block.blkid] + 1
 
                 for t in i.transactions:
-                    self.all_transactions.append()
+                    self.all_transactions.insert(t)
 
                 # AND CHECK AGAIN FOR UNADDED_BLOCKS WITH THIS AS PARENT
                 added_blocks.append(i)
         
         for i in invalid_blocks:
             self.pop_blocks_with_parent(i)
-            self.unadded_blocks.remove(i)           ##### IS IT VALID ??
-                                                    ##### i is an object of block (can store blkid instead too)
+            self.unadded_blocks.remove(i)
 
         for i in added_blocks:
             (new_length, new_block) = self.check_and_add_unadded(i)
@@ -194,7 +191,7 @@ class BlockChain:
         blkid = block.blkid
 
         if blkid in self.blocks_all:
-            return
+            return False
 
         if parent_id not in self.blocks_all:
             self.unadded_blocks.append(block)
@@ -202,20 +199,23 @@ class BlockChain:
             valid, new_balance = self.is_valid(block)
             
             if not valid:
-                return
+                return False
             
             self.balances[blkid] = np.copy(new_balance)
             self.blocks_all[blkid] = block
             self.depth[blkid] = self.depth[parent_id] + 1
 
             (new_length, new_block) = self.check_and_add_unadded(block)
+            for t in block.transactions:
+                self.all_transactions.insert(t)
 
-            if(new_length > self.longest_length):
+            if (new_length > self.longest_length):
+                self.change_mining_branch(new_block.blkid)
                 self.longest_length = new_length
                 self.longest_block = new_block
-                ## create new block
+                return True     ## create new block
             else:
-                pass
+                return False
 
 class Peer:
     def __init__(self, speed, cpu):
@@ -297,3 +297,33 @@ for p in peers:
 
 env.run(until=10)
 scheduler_thread.join()
+
+
+
+
+
+def GenPlot(Blocks):
+
+    g = Digraph('blockchain', node_attr={'shape': 'record', 'style': 'rounded,filled', 'fontname': 'Arial'})
+    g.graph_attr['rankdir'] = 'RL'
+
+    genesis_block_id = GenB.blkid
+    depth = 10
+    for key in Blocks:
+        block = Blocks[key]
+        block_label = f'<hash> Hash={str(block.blkid)[:7]} ' \
+                    f'|<link> Link={str(block.prev_blkid)[:7]} ' \
+                    f'| MineTime={block.creation_time:.1f}' \
+                    f'| {{Idx={depth} | Miner={block.miner_id}}}' \
+                    f'| {{NewTxnIncluded={len(block.transactions) - (block.miner_id != "?")}}}'
+        g.node(name=key, label=block_label)
+
+    for key in Blocks:
+        if key != genesis_block_id:
+            block = Blocks[key]
+            g.edge(tail_name=f'{block.blkid}', head_name=f'{block.prev_blkid}')
+
+    return g
+
+g = GenPlot(Blocks)
+g.render("Blockchain", format="png")
