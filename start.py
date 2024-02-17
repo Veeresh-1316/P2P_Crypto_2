@@ -189,7 +189,6 @@ class BlockChain:
         
         return length, blk
 
-
     def add_block(self, block):
         parent_id = block.prev_blkid
         blkid = block.blkid
@@ -226,7 +225,8 @@ class Peer:
         peers.append(self)
         self.bitcoins = 0
         self.transactions = []
-        self.broadcast_transaction_set = set()
+        self.recieved_blocks = set()
+        self.recieved_transactions = set()
         self.connections = []
         self.hash_power = slow_hash_power * hash_ratio[cpu]
          
@@ -248,37 +248,34 @@ class Peer:
         return latency / 1000
 
     def broadcast(self, msg):
-        if isinstance(msg,Transaction) : 
-           tx = msg 
-           if tx not in self.broadcast_transaction_set :
-               print("Transaction ", tx, " received by ", self.id, "at", time.perf_counter() - start)
-               self.broadcast_transaction_set.add( tx )
+        queue = self.recieved_transactions if isinstance(msg,Transaction) else self.recieved_blocks
+        if msg not in queue:
+               queue.add(msg)
                for peer in self.connections : 
                    latency = self.get_latency(peer, size_of_transaction)
-                   print("Transaction ", tx, "from ", self.id, " to ", peer.id, "with delay ", latency, "at", time.perf_counter() - start)
-                   scheduler.add_event(latency, peer.broadcast , (tx,) )
+                   print(f"{type(msg)} ", msg , "from ", self.id, " to ", peer.id, "with delay ", latency, "at", time.perf_counter() - start)
+                   scheduler.add_event(latency, peer.broadcast , (msg,) )
 
         if isinstance(msg,Block) : 
-            block = msg 
+           block = msg 
+           if self.blockchain.add_block(block) : self.create_blk()
     
     def create_blk(self) : 
-        unpublished_transaction = self.broadcast_transaction_set - self.blockchain.get_transactions()
-        no_of_tranasctions = min(unpublished_transaction,random.randint(0,max_tranasactions_per_block -1))
+        unpublished_transaction = self.broadcast_transaction_set - set(self.blockchain.txn_pool)
+        no_of_tranasctions = min(unpublished_transaction,random.randint(0,max_transactions_per_block -1))
         coinbase_transaction = CoinBaseTransaction(self) 
         transactions = [coinbase_transaction] + list( random.sample(unpublished_transaction,no_of_tranasctions) )
         tk = np.random.exponential( interarrival_mean_time / self.hash_power )
         block = Block( self.blockchain.get_last_block().blkid , time.time() + tk , transactions )
         self.publish_block( block , tk )
 
-    def publish_block(self,block,tk) : 
-        def temp_publish_block(peer,block) : 
-            if block.get_previous_block() == peer.blockchain.get_last_block() : 
+    def publish_block(self,block:Block,tk) : 
+        def temp_publish_block(peer,block:Block) : 
+            if block.prev_blkid == peer.blockchain.get_last_block().blkid : 
                peer.brodcast(block)
             else : print(f"block aborted :: {block} by peer :: {peer} due to new chain")
         block_publisher.add_event(tk, temp_publish_block, (self,block))
         
-
-
     def __str__(self) -> str:
         return str(self.id)
 
