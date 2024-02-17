@@ -20,12 +20,16 @@ coins_per_transaction = 1
 size_of_transaction = 8    # kilo-bits
 N = 5
 z0 = 0.5
+num_slow = int(z0*N)
 z1 = 0.5
+num_low_cpu = int(z1*N)
 rho = random.random()*490 + 10     # ms - light propagation delay
 
 peers = []
-peers_slow = np.random.choice(N, int(z0*N), replace=False)
-peers_low_cpu = np.random.choice(N, int(z1*N), replace=False)
+peers_slow = np.random.choice(N, num_slow, replace=False)
+peers_low_cpu = np.random.choice(N, num_low_cpu, replace=False)
+slow_hash_power = 1/(10*N - 9*num_low_cpu)
+hash_ratio = {True: 10, False: 1}
 
 start = time.perf_counter()
 
@@ -47,16 +51,143 @@ class Transaction:
         #TxnID: IDx pays IDy C coins
         return f"{self.txid}: {self.sender} pays {self.receiver} {self.coins} coins"
 
+class Block:
+    def __init__(self, prev_blkid, creationTime, transactions):
+        self.prev_blkid = prev_blkid
+        self.creation_time = creationTime
+        self.transactions = transactions
+        self.blkid = hashlib.md5(str([self.prev_blkid, self.creation_time, [str(i) for i in self.transactions]]).encode()).hexdigest()
+
+    def size(self):
+        return (1+len(self.transactions)) * size_of_transaction
+
+    def __hash__(self):
+        return hash(self.blkid)
+
+    def prevblkid(self):
+        return self.prev_blkid
+
+
+GENESIS_BLOCK = Block(0, time.time() - start, [])
+
+class BlockChain:
+    def __init__(self):
+        self.GENESIS_BLOCK = GENESIS_BLOCK
+        self.blocks_all = {GENESIS_BLOCK.blkid: GENESIS_BLOCK}
+        self.unadded_blocks = []
+
+        self.depth = {GENESIS_BLOCK.blkid: 0}
+        self.balances =  { GENESIS_BLOCK.blkid: np.zeros(N) }
+        
+        self.longest_length = 0
+        self.longest_block = GENESIS_BLOCK
+
+    def get_last_block(self):
+        return self.longest_block
+
+    def is_valid(self, block):
+        parent_balances = self.balances[block.prev_blkid]
+        new_balance = np.copy(parent_balances)
+        transactions = block.transactions
+        valid = True
+
+        for t in transactions:
+            sender = t.sender
+            receiver = t.receievr
+            coins = t.coins
+            if new_balance[sender.id] > coins:
+                new_balance[sender.id]   -= coins
+                new_balance[receiver.id] += coins
+            else:
+                valid = False
+                break
+        return valid, new_balance
+                
+    def pop_blocks_with_parent(self, block):
+        invalid_blocks = []
+        for i in self.unadded_blocks:
+            if i.prev_blkid == block.blkid:
+                invalid_blocks.append(i)
+        for i in invalid_blocks:
+            self.pop_blocks_with_parent(i)
+            self.unadded_blocks.remove(i)
+
+    def check_and_add_unadded(self, block):
+        added_blocks = []
+        invalid_blocks = []
+        length = self.depth[block.blkid]
+        blk = block
+
+        for i in self.unadded_blocks:
+            if i.prev_blkid == block.blkid:
+                # VALIDATE
+                # ADD THIS NEW BLOCK TO BLOCKCHAIN
+
+                valid, new_balance = self.is_valid(block)
+            
+                if not valid:
+                    invalid_blocks.append(i)
+                
+                self.balances[i.blkid] = np.copy(new_balance)
+                self.blocks_all[i.blkid] = block
+                self.depth[i.blkid] = self.depth[block.blkid] + 1
+
+                # AND CHECK AGAIN FOR UNADDED_BLOCKS WITH THIS AS PARENT
+                added_blocks.append(i)
+        
+        for i in invalid_blocks:
+            self.pop_blocks_with_parent(i)
+            self.unadded_blocks.remove(i)           ##### IS IT VALID ??
+                                                    ##### i is an object of block (can store blkid instead too)
+
+        for i in added_blocks:
+            (new_length, new_block) = self.check_and_add_unadded(i)
+            if new_length > length:
+                length = new_length
+                blk = new_block
+        
+        return length, blk
+
+
+    def add_block(self, block):
+        parent_id = block.prev_blkid
+        blkid = block.blkid
+
+        if blkid in self.blocks_all:
+            return
+
+        if parent_id not in self.blocks_all:
+            self.unadded_blocks.append(block)
+        else:
+            valid, new_balance = self.is_valid(block)
+            
+            if not valid:
+                return
+            
+            self.balances[blkid] = np.copy(new_balance)
+            self.blocks_all[blkid] = block
+            self.depth[blkid] = self.depth[parent_id] + 1
+
+            (new_length, new_block) = self.check_and_add_unadded(block)
+
+            if(new_length > self.longest_length):
+                self.longest_length = new_length
+                self.longest_block = new_block
+                ## create new block
+            else:
+                pass
+
 class Peer:
     def __init__(self, speed, cpu):
         self.speed = speed
         self.cpu = cpu
         self.id = len(peers)
         peers.append(self)
-        self.bitcoins = 10
+        self.bitcoins = 0
         self.transactions = []
         self.queue = defaultdict(time.perf_counter)
         self.connections = []
+        self.hash_power = slow_hash_power * hash_ratio[cpu]
          
     def generate(self, env):
         while True:
