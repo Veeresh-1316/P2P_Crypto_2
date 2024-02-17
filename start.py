@@ -88,7 +88,7 @@ class BlockChain:
         self.blocks_all = {GENESIS_BLOCK.blkid: GENESIS_BLOCK}
         self.unadded_blocks = []
 
-        self.all_transactions = []  ## all transactions in all blockchain
+        self.all_transactions = set()  ## all transactions in all blockchain
         self.txn_pool = set()       ## all transactions in longest chain
 
         self.depth = {GENESIS_BLOCK.blkid: 0}
@@ -106,11 +106,15 @@ class BlockChain:
         transactions = block.transactions
         valid = True
 
+        if transactions[0].sender is None:
+            new_balance[receiver.id] += transactions[0].coins
+            transactions = transactions[1:]
+
         for t in transactions:
             sender = t.sender
             receiver = t.receievr
             coins = t.coins
-            if new_balance[sender.id] > coins:
+            if new_balance[sender.id] >= coins:
                 new_balance[sender.id]   -= coins
                 new_balance[receiver.id] += coins
             else:
