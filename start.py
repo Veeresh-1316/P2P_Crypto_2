@@ -6,7 +6,7 @@ from multiprocessing import pool
 from multiprocessing.pool import ThreadPool
 import random
 from matplotlib import pyplot as plt
-from networkx import DiGraph
+from graphviz import Digraph
 import numpy as np
 import simpy
 import time
@@ -24,15 +24,14 @@ block_publisher_thread.start()
 
 
 interarrival_mean_time = 5
-interarrival_mean_block_time = 20
-coins_per_transaction = 1
+interarrival_mean_block_time = 100
 size_of_transaction = 8    # kilo-bits
 max_transactions_per_block = 1000
 
-N = 8
-z0 = 0.5
+N = 100
+z0 = 0.5 #0.5
 num_slow = int(z0*N)
-z1 = 0.5
+z1 = 0 #0.5
 num_low_cpu = int(z1*N)
 rho = random.random()*490 + 10     # ms - light propagation delay
 
@@ -75,7 +74,7 @@ class Block :
 
     def __init__(self, prev_blkid, creationTime, transactions,miner_id):
         self.prev_blkid = prev_blkid
-        self.creation_time = creationTime
+        self.creation_time = creationTime - start
         self.transactions = transactions
         self.blkid = hashlib.md5(str([self.prev_blkid, self.creation_time, [str(i) for i in self.transactions]]).encode()).hexdigest()
         self.miner_id = miner_id 
@@ -93,21 +92,23 @@ class Block :
         return self.prev_blkid
 
 GENESIS_BLOCK = Block(-1, time.time() - start, [],-1)
+INTIAL_BALANCES = np.random.randint(50,size=N) #np.zeros(N)
 
 class BlockChain :
-    def __init__(self):
+    def __init__(self,peer):
         self.GENESIS_BLOCK = GENESIS_BLOCK
         self.blocks_all = {GENESIS_BLOCK.blkid: GENESIS_BLOCK}
-        self.unadded_blocks = []
+        self.unadded_blocks = set()
 
         self.all_transactions = set()  ## all transactions in all blockchain
         self.txn_pool = set()       ## all transactions in longest chain
 
         self.depth = {GENESIS_BLOCK.blkid: 0}
-        self.balances =  { GENESIS_BLOCK.blkid: np.zeros(N) }
+        self.balances =  { GENESIS_BLOCK.blkid:  INTIAL_BALANCES}
 
         self.longest_length = 0
         self.longest_block = GENESIS_BLOCK
+        self.peer = peer 
 
     def get_last_block(self):
         return self.longest_block
@@ -135,8 +136,10 @@ class BlockChain :
                 new_balance[sender.id]   -= coins
                 new_balance[receiver.id] += coins
             else:
+                self.peer.logger.info(f"Rejected {block} due to transaction : {t}")
                 valid = False
                 break
+        
         return valid, new_balance
 
     def change_mining_branch(self, new_longest_blkid):
@@ -215,7 +218,7 @@ class BlockChain :
             return False
 
         if parent_id not in self.blocks_all:
-            self.unadded_blocks.append(block)
+            self.unadded_blocks.add(block)
         else:
             valid, new_balance = self.is_valid(block)
 
@@ -250,7 +253,7 @@ class Peer :
         self.recieved_blocks = set()
         self.recieved_transactions = set()
         self.connections = []
-        self.blockchain = BlockChain()
+        self.blockchain = BlockChain(self)
         self.hash_power = slow_hash_power * hash_ratio[cpu]
         
         self.logger = logging.getLogger(f"peer_{self.id}")
@@ -270,6 +273,8 @@ class Peer :
         while True:
             tim = np.random.exponential(interarrival_mean_time)
             yield env.timeout(tim)
+            current_bal = self.blockchain.balances[self.blockchain.longest_block.blkid][self.id]
+            coins_per_transaction = round( random.uniform(0.01,current_bal/10) , 2  )
             tx = Transaction(self, random.choice(peers[:self.id]+peers[self.id+1:]), coins_per_transaction)
             self.transactions.append(tx)
             self.logger.info(f"Generating Transaction {tx}")
@@ -280,6 +285,7 @@ class Peer :
         c_ij = 100 if (self.speed and peer.speed) else 5
         d_ij = np.random.exponential(96/c_ij)
         latency = rho + (size/c_ij) + d_ij
+        latency = latency #expriment *50
         return latency / 1000
 
     def broadcast(self, msg):
@@ -295,7 +301,10 @@ class Peer :
 
                if isinstance(msg,Block) :
                    block = msg
-                   if self.blockchain.add_block(block) : self.create_and_publish_block()
+                   if self.blockchain.add_block(block) : 
+                      self.create_and_publish_block()
+                   else : 
+                       self.logger.info(f"Invalid :: {msg}")
 
     ### TO BE IMPLEMENTED
     def valid_transactions(self, transactions:list[Transaction],n):
@@ -304,6 +313,7 @@ class Peer :
         final_transactions = set()
         temp_bal = self.blockchain.balances[ self.blockchain.longest_block.blkid ].copy()
         for i in transactions : 
+            if i.sender is None : continue 
             sender , reciever , coins = i.sender.id , i.receiver.id , i.coins 
             if temp_bal[sender] >= coins : 
                 temp_bal[sender] -= coins 
@@ -335,7 +345,7 @@ class Peer :
         block_publisher.add_event(tk, temp_publish_block, (self,block))
 
     def print_blockchain(self):
-        g = DiGraph('blockchain', node_attr={'shape': 'record', 'style': 'rounded,filled', 'fontname': 'Arial'})
+        g = Digraph('blockchain', node_attr={'shape': 'record', 'style': 'rounded,filled', 'fontname': 'Arial'})
         g.graph_attr['rankdir'] = 'RL'
     
         genesis_block_id = GENESIS_BLOCK.blkid
@@ -347,18 +357,17 @@ class Peer :
                         f'| MineTime={block.creation_time:.1f}' \
                         f'| {{Idx={self.blockchain.depth[ key ]} | Miner={block.miner_id}}}' \
                         f'| {{NewTxnIncluded={ len(block.transactions)  }}}'
+            self.logger.info(f"graph :: {key}")
             g.node(name=key, label=block_label)
     
         for key in Blocks:
             if key != genesis_block_id:
                 block = Blocks[key]
                 g.edge(tail_name=f'{block.blkid}', head_name=f'{block.prev_blkid}')
-        g.view(filename = f"blockchain_{self.id}.png", base_path = "fig/")
-        #return g
+        g.render(filename = f"blockchain_{self.id}.png", directory = "fig/",view=False)
 
     def __str__(self) -> str:
         return str(self.id)
-
 
 Network = generate_random_connected_graph(N)
 for i in range(N):
@@ -375,11 +384,13 @@ env = simpy.rt.RealtimeEnvironment(factor=1)
 for p in peers:
     env.process(p.generate(env))
 
-env.run(until=10)
+t = Thread( target = lambda x : env.run(until = x) , args = (100,) )
+t.start()
 
-input("The Input :: ") 
-for peer in peers :
-    peer.print_blockchain()
+while True :
+      input("The Input :: ") 
+      for peer in peers :
+          peer.print_blockchain()
 
 scheduler_thread.join()
 
