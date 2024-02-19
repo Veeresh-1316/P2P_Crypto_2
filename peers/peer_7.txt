@@ -1,0 +1,77 @@
+2024-02-19 15:26:26,655 - INFO - Created block : ae6538911364479065de94eaf195aeff , publish at : 9.576068021662065
+2024-02-19 15:26:27,468 - INFO - Recieved 8b1988b2c023e62bf2b47f95eb978ef9: 0 pays 5 1 coins
+2024-02-19 15:26:27,468 - INFO - Sending 8b1988b2c023e62bf2b47f95eb978ef9: 0 pays 5 1 coins , at latency : 0.19390335473557735 , to : 3
+2024-02-19 15:26:27,468 - INFO - Sending 8b1988b2c023e62bf2b47f95eb978ef9: 0 pays 5 1 coins , at latency : 0.15608669908045053 , to : 5
+2024-02-19 15:26:27,468 - INFO - Sending 8b1988b2c023e62bf2b47f95eb978ef9: 0 pays 5 1 coins , at latency : 0.14859050918601013 , to : 2
+2024-02-19 15:26:27,468 - INFO - Sending 8b1988b2c023e62bf2b47f95eb978ef9: 0 pays 5 1 coins , at latency : 0.16595227886236036 , to : 0
+2024-02-19 15:26:27,468 - INFO - Sending 8b1988b2c023e62bf2b47f95eb978ef9: 0 pays 5 1 coins , at latency : 0.1579839096362129 , to : 4
+2024-02-19 15:26:27,975 - INFO - Recieved 1666400dc542a646cf58ba034d76b5b5: 2 pays 5 1 coins
+2024-02-19 15:26:27,975 - INFO - Sending 1666400dc542a646cf58ba034d76b5b5: 2 pays 5 1 coins , at latency : 0.20742507140431907 , to : 3
+2024-02-19 15:26:27,975 - INFO - Sending 1666400dc542a646cf58ba034d76b5b5: 2 pays 5 1 coins , at latency : 0.16383028750129502 , to : 5
+2024-02-19 15:26:27,975 - INFO - Sending 1666400dc542a646cf58ba034d76b5b5: 2 pays 5 1 coins , at latency : 0.14877139567818504 , to : 2
+2024-02-19 15:26:27,975 - INFO - Sending 1666400dc542a646cf58ba034d76b5b5: 2 pays 5 1 coins , at latency : 0.1782920632901872 , to : 0
+2024-02-19 15:26:27,975 - INFO - Sending 1666400dc542a646cf58ba034d76b5b5: 2 pays 5 1 coins , at latency : 0.16871160990210196 , to : 4
+2024-02-19 15:26:28,333 - INFO - Recieved d4b0aa64beaa30101d446f96738a3d4f: 0 pays 1 1 coins
+2024-02-19 15:26:28,333 - INFO - Sending d4b0aa64beaa30101d446f96738a3d4f: 0 pays 1 1 coins , at latency : 0.17954822795247732 , to : 3
+2024-02-19 15:26:28,333 - INFO - Sending d4b0aa64beaa30101d446f96738a3d4f: 0 pays 1 1 coins , at latency : 0.150695829449151 , to : 5
+2024-02-19 15:26:28,333 - INFO - Sending d4b0aa64beaa30101d446f96738a3d4f: 0 pays 1 1 coins , at latency : 0.147428203662597 , to : 2
+2024-02-19 15:26:28,333 - INFO - Sending d4b0aa64beaa30101d446f96738a3d4f: 0 pays 1 1 coins , at latency : 0.16520062907361302 , to : 0
+2024-02-19 15:26:28,333 - INFO - Sending d4b0aa64beaa30101d446f96738a3d4f: 0 pays 1 1 coins , at latency : 0.1561710930234222 , to : 4
+2024-02-19 15:26:28,788 - INFO - Generating Transaction c36e7d484277b6ea2f643fa4b2502241: 7 pays 6 1 coins
+2024-02-19 15:26:28,789 - INFO - Recieved c36e7d484277b6ea2f643fa4b2502241: 7 pays 6 1 coins
+2024-02-19 15:26:28,790 - INFO - Sending c36e7d484277b6ea2f643fa4b2502241: 7 pays 6 1 coins , at latency : 0.14970653036169398 , to : 3
+2024-02-19 15:26:28,790 - INFO - Sending c36e7d484277b6ea2f643fa4b2502241: 7 pays 6 1 coins , at latency : 0.1939572405901516 , to : 5
+2024-02-19 15:26:28,790 - INFO - Sending c36e7d484277b6ea2f643fa4b2502241: 7 pays 6 1 coins , at latency : 0.14977764937020802 , to : 2
+2024-02-19 15:26:28,790 - INFO - Sending c36e7d484277b6ea2f643fa4b2502241: 7 pays 6 1 coins , at latency : 0.1571291977500452 , to : 0
+2024-02-19 15:26:28,790 - INFO - Sending c36e7d484277b6ea2f643fa4b2502241: 7 pays 6 1 coins , at latency : 0.14917248670123798 , to : 4
+2024-02-19 15:26:30,380 - INFO - Recieved 68759604edf7209c838f3a23ac4bf358: 5 pays 4 1 coins
+2024-02-19 15:26:30,381 - INFO - Sending 68759604edf7209c838f3a23ac4bf358: 5 pays 4 1 coins , at latency : 0.15404604387285334 , to : 3
+2024-02-19 15:26:30,381 - INFO - Sending 68759604edf7209c838f3a23ac4bf358: 5 pays 4 1 coins , at latency : 0.1651928167604809 , to : 5
+2024-02-19 15:26:30,382 - INFO - Sending 68759604edf7209c838f3a23ac4bf358: 5 pays 4 1 coins , at latency : 0.14807483706199084 , to : 2
+2024-02-19 15:26:30,382 - INFO - Sending 68759604edf7209c838f3a23ac4bf358: 5 pays 4 1 coins , at latency : 0.15671877119606045 , to : 0
+2024-02-19 15:26:30,382 - INFO - Sending 68759604edf7209c838f3a23ac4bf358: 5 pays 4 1 coins , at latency : 0.1698248162627558 , to : 4
+2024-02-19 15:26:30,757 - INFO - Recieved 5359836ba48a716e42aece3236b12919: 1 pays 2 1 coins
+2024-02-19 15:26:30,757 - INFO - Sending 5359836ba48a716e42aece3236b12919: 1 pays 2 1 coins , at latency : 0.2057419171604058 , to : 3
+2024-02-19 15:26:30,757 - INFO - Sending 5359836ba48a716e42aece3236b12919: 1 pays 2 1 coins , at latency : 0.1521189681981329 , to : 5
+2024-02-19 15:26:30,757 - INFO - Sending 5359836ba48a716e42aece3236b12919: 1 pays 2 1 coins , at latency : 0.14763841025120786 , to : 2
+2024-02-19 15:26:30,757 - INFO - Sending 5359836ba48a716e42aece3236b12919: 1 pays 2 1 coins , at latency : 0.16248774620783715 , to : 0
+2024-02-19 15:26:30,757 - INFO - Sending 5359836ba48a716e42aece3236b12919: 1 pays 2 1 coins , at latency : 0.1562827016793041 , to : 4
+2024-02-19 15:26:32,874 - INFO - Recieved 2e0082e43eb86726b1178a94a97a5803: 3 pays 6 1 coins
+2024-02-19 15:26:32,874 - INFO - Sending 2e0082e43eb86726b1178a94a97a5803: 3 pays 6 1 coins , at latency : 0.1509077040234139 , to : 3
+2024-02-19 15:26:32,874 - INFO - Sending 2e0082e43eb86726b1178a94a97a5803: 3 pays 6 1 coins , at latency : 0.14953402024442136 , to : 5
+2024-02-19 15:26:32,874 - INFO - Sending 2e0082e43eb86726b1178a94a97a5803: 3 pays 6 1 coins , at latency : 0.1499806346794227 , to : 2
+2024-02-19 15:26:32,874 - INFO - Sending 2e0082e43eb86726b1178a94a97a5803: 3 pays 6 1 coins , at latency : 0.180416661165831 , to : 0
+2024-02-19 15:26:32,874 - INFO - Sending 2e0082e43eb86726b1178a94a97a5803: 3 pays 6 1 coins , at latency : 0.15397412337804908 , to : 4
+2024-02-19 15:26:33,331 - INFO - Recieved c230b54df3baccbe1c65a2b962c3e967: 3 pays 0 1 coins
+2024-02-19 15:26:33,331 - INFO - Sending c230b54df3baccbe1c65a2b962c3e967: 3 pays 0 1 coins , at latency : 0.15189926349776586 , to : 3
+2024-02-19 15:26:33,331 - INFO - Sending c230b54df3baccbe1c65a2b962c3e967: 3 pays 0 1 coins , at latency : 0.14936550423920725 , to : 5
+2024-02-19 15:26:33,331 - INFO - Sending c230b54df3baccbe1c65a2b962c3e967: 3 pays 0 1 coins , at latency : 0.14706080968297597 , to : 2
+2024-02-19 15:26:33,331 - INFO - Sending c230b54df3baccbe1c65a2b962c3e967: 3 pays 0 1 coins , at latency : 0.16919379345924151 , to : 0
+2024-02-19 15:26:33,331 - INFO - Sending c230b54df3baccbe1c65a2b962c3e967: 3 pays 0 1 coins , at latency : 0.18697238526786505 , to : 4
+2024-02-19 15:26:34,126 - INFO - Recieved 86e1050b08b0a9e69c416233cf491af6: 5 pays 0 1 coins
+2024-02-19 15:26:34,127 - INFO - Sending 86e1050b08b0a9e69c416233cf491af6: 5 pays 0 1 coins , at latency : 0.15622522866318342 , to : 3
+2024-02-19 15:26:34,127 - INFO - Sending 86e1050b08b0a9e69c416233cf491af6: 5 pays 0 1 coins , at latency : 0.16480601498316044 , to : 5
+2024-02-19 15:26:34,127 - INFO - Sending 86e1050b08b0a9e69c416233cf491af6: 5 pays 0 1 coins , at latency : 0.14709619693704484 , to : 2
+2024-02-19 15:26:34,127 - INFO - Sending 86e1050b08b0a9e69c416233cf491af6: 5 pays 0 1 coins , at latency : 0.15907644280523114 , to : 0
+2024-02-19 15:26:34,127 - INFO - Sending 86e1050b08b0a9e69c416233cf491af6: 5 pays 0 1 coins , at latency : 0.18955611050794027 , to : 4
+2024-02-19 15:26:36,232 - INFO - 7 is publishing block : block : ae6538911364479065de94eaf195aeff
+2024-02-19 15:26:36,232 - INFO - Recieved block : ae6538911364479065de94eaf195aeff
+2024-02-19 15:26:36,232 - INFO - Sending block : ae6538911364479065de94eaf195aeff , at latency : 0.155342450492301 , to : 3
+2024-02-19 15:26:36,233 - INFO - Sending block : ae6538911364479065de94eaf195aeff , at latency : 0.17531680413958395 , to : 5
+2024-02-19 15:26:36,233 - INFO - Sending block : ae6538911364479065de94eaf195aeff , at latency : 0.14695891634534528 , to : 2
+2024-02-19 15:26:36,233 - INFO - Sending block : ae6538911364479065de94eaf195aeff , at latency : 0.15572849825218002 , to : 0
+2024-02-19 15:26:36,234 - INFO - Sending block : ae6538911364479065de94eaf195aeff , at latency : 0.17789700951773132 , to : 4
+2024-02-19 15:26:36,234 - INFO - Created block : c4be2a5e0bb7a42e8b192d9ffa97ee9b , publish at : 39.386681913178414
+2024-02-19 15:26:46,324 - INFO - Recieved block : 06cfa6576d90dca536663878680d5a28
+2024-02-19 15:26:46,324 - INFO - Sending block : 06cfa6576d90dca536663878680d5a28 , at latency : 0.1550340180794692 , to : 3
+2024-02-19 15:26:46,324 - INFO - Sending block : 06cfa6576d90dca536663878680d5a28 , at latency : 0.17646776312201334 , to : 5
+2024-02-19 15:26:46,324 - INFO - Sending block : 06cfa6576d90dca536663878680d5a28 , at latency : 0.14797507033729038 , to : 2
+2024-02-19 15:26:46,324 - INFO - Sending block : 06cfa6576d90dca536663878680d5a28 , at latency : 0.15845285971781006 , to : 0
+2024-02-19 15:26:46,325 - INFO - Sending block : 06cfa6576d90dca536663878680d5a28 , at latency : 0.17946706048240063 , to : 4
+2024-02-19 15:26:46,325 - INFO - Created block : e2663573036d57ae92a60461bc8ffe60 , publish at : 79.35089278355441
+2024-02-19 15:26:53,091 - INFO - Recieved block : 5a5d3ef1a601ce942ab04ad2d12396ba
+2024-02-19 15:26:53,092 - INFO - Sending block : 5a5d3ef1a601ce942ab04ad2d12396ba , at latency : 0.1568671759183873 , to : 3
+2024-02-19 15:26:53,092 - INFO - Sending block : 5a5d3ef1a601ce942ab04ad2d12396ba , at latency : 0.17798289433488806 , to : 5
+2024-02-19 15:26:53,092 - INFO - Sending block : 5a5d3ef1a601ce942ab04ad2d12396ba , at latency : 0.1479651568194597 , to : 2
+2024-02-19 15:26:53,093 - INFO - Sending block : 5a5d3ef1a601ce942ab04ad2d12396ba , at latency : 0.20877616699833576 , to : 0
+2024-02-19 15:26:53,093 - INFO - Sending block : 5a5d3ef1a601ce942ab04ad2d12396ba , at latency : 0.15856898584604204 , to : 4
