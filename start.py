@@ -13,25 +13,25 @@ import time
 from graph import generate_random_connected_graph
 from threading import Thread
 from scheduler import PriorityQueueScheduler, PriorityQueueScheduler1
+import sys 
 
-scheduler = PriorityQueueScheduler()
-scheduler_thread = Thread(target=scheduler.run)
-scheduler_thread.start()
-
-block_publisher = PriorityQueueScheduler1()
-block_publisher_thread = Thread(target=block_publisher.run)
-block_publisher_thread.start()
-
-
+### Tunable paramters 
+N = 30
 interarrival_mean_time = 5
 interarrival_mean_block_time = 10
 size_of_transaction = 8    # kilo-bits
 max_transactions_per_block = 1000
+hash_ratio = {True: 10, False: 1}
+COINBASE_COINS_PER_TRANSACTION = 50
 
-N = 5
-z0 = 0.5 #0.5
+simpy_simulation_time = 70 # time to generate transaction 
+full_simulation_time = 100 # Full time to end program 
+z0 = float(sys.argv[1]) # between 0 and 1 
+z1 = float(sys.argv[2]) # between 0 and 1 
+### End tunable parameters
+
+
 num_slow = int(z0*N)
-z1 = 0 #0.5
 num_low_cpu = int(z1*N)
 rho = random.random()*490 + 10     # ms - light propagation delay
 
@@ -39,8 +39,6 @@ peers = []
 peers_slow = np.random.choice(N, num_slow, replace=False)
 peers_low_cpu = np.random.choice(N, num_low_cpu, replace=False)
 slow_hash_power = 1/(10*N - 9*num_low_cpu)
-hash_ratio = {True: 10, False: 1}
-COINBASE_COINS_PER_TRANSACTION = 50
 
 start = time.perf_counter()
 
@@ -255,7 +253,8 @@ class BlockChain :
                 return False
     
 class Peer :
-
+    ### One peer object / peer in network (speed & cpu) . 
+    ### Its activity is logged in peer/peer_{id}.txt 
     def __init__(self, speed, cpu):
         self.speed = speed
         self.cpu = cpu
@@ -266,60 +265,63 @@ class Peer :
         self.recieved_blocks = set()
         self.recieved_transactions = set()
         self.connections = []
-        self.blockchain = BlockChain(self)
+        self.blockchain = BlockChain(self)  # It has a blockchain object which maintains its blockchain data 
         self.hash_power = slow_hash_power * hash_ratio[cpu]
         
-        self.logger = logging.getLogger(f"peer_{self.id}")
+        self.logger = logging.getLogger(f"peer_{self.id}")  # Logger 
         self.logger.setLevel(logging.DEBUG)
         file_handler = logging.FileHandler(f"peers/peer_{self.id}.txt",mode='w+')
         file_handler.setLevel(logging.DEBUG)
-
         formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
         file_handler.setFormatter(formatter)
-
         self.logger.addHandler(file_handler)
 
-        ### start mining
+        ### start the mining to create the first block 
         self.create_and_publish_block()
-
+    
+    # Function to generate transactions 
     def generate(self, env):
         while True:
-            tim = np.random.exponential(interarrival_mean_time)
+            tim = np.random.exponential(interarrival_mean_time) 
             yield env.timeout(tim)
             current_bal = self.blockchain.balances[self.blockchain.longest_block.blkid][self.id]
             coins_per_transaction = round( random.uniform(0.01,current_bal/10) , 2  )
-            tx = Transaction(self, random.choice(peers[:self.id]+peers[self.id+1:]), coins_per_transaction)
+            # Create a transaction from current peer to a random peer with valid coins . 
+            tx = Transaction(self, random.choice(peers[:self.id]+peers[self.id+1:]), coins_per_transaction) #Transaction object
             self.transactions.append(tx)
             self.logger.info(f"Generating Transaction {tx}")
-            thread = Thread(target=self.broadcast, args=(tx,))
+            thread = Thread(target=self.broadcast, args=(tx,)) #Create a seperate thread to brodcast the transaction 
             thread.start()
 
-    def get_latency(self, peer, size):
+    def get_latency(self, peer, size): # Latency of network connection link between two peers 
         c_ij = 100 if (self.speed and peer.speed) else 5
         d_ij = np.random.exponential(96/c_ij)
         latency = rho + (size/c_ij) + d_ij
         latency = latency #expriment *50
         return latency / 1000
-
+    
+    # Function to both recieve and brodcast to neighbour clients (both block and transactions)
     def broadcast(self, msg):
         queue = self.recieved_transactions if isinstance(msg,Transaction) else self.recieved_blocks
+        ### Loopless implementation of brodcasting in network 
+        # if is msg is already recieved , it is stored in the queue . the next time it will be ignored 
+        # else , Add the msg in queue . Do appropiate action 
         if msg not in queue:
                queue.add(msg)
                self.logger.info(f"Recieved {msg}")
                for peer in self.connections :
                    latency = self.get_latency(peer, size_of_transaction)
                    self.logger.info(f"Sending {msg} , at latency : {latency} , to : {peer}")
-                   #print(f"{type(msg)} ", msg , "from ", self.id, " to ", peer.id, "with delay ", latency, "at", time.perf_counter() - start)
                    scheduler.add_event(latency, peer.broadcast , (msg,) )
 
                if isinstance(msg,Block) :
                    block = msg
-                   if self.blockchain.add_block(block) : 
-                      self.create_and_publish_block()
+                   if self.blockchain.add_block(block) :  # This function returns if it creates a new long chain 
+                      self.create_and_publish_block() # Create a block and add to publish thread 
                    else : 
-                       self.logger.info(f"Invalid :: {msg}")
+                       self.logger.info(f"Invalid {msg}")
 
-    ### TO BE IMPLEMENTED
+    ### Check if a transaction is valid , by using the balances of the peer from the blockchain 
     def valid_transactions(self, transactions:list[Transaction],n):
         ## should not include coinbase
         ## all chosen transactions should be valid according to last longest block
@@ -335,29 +337,33 @@ class Peer :
             if len(final_transactions) == n : return final_transactions 
         return final_transactions 
             
+    ### Creates a block object immediatly using a set of valid & unpublished transaction . Then call the publish 
+    ### function which publish the block after a delay . 
     def create_and_publish_block(self) :
+        #Get a list of valid transaction , that are not in longest chain 
         unpublished_transaction = (self.recieved_transactions | self.blockchain.all_transactions) - self.blockchain.txn_pool
         no_of_tranasctions = min( len(unpublished_transaction) ,random.randint(0,max_transactions_per_block -1))
         valid_transaction = self.valid_transactions(unpublished_transaction,no_of_tranasctions)
-
-        coinbase_transaction = CoinBaseTransaction(self)
+        coinbase_transaction = CoinBaseTransaction(self) # Add coinbase transaction 
         transactions = [coinbase_transaction] + list(valid_transaction)
-        tk = np.random.exponential( interarrival_mean_block_time / self.hash_power )
+        tk = np.random.exponential( interarrival_mean_block_time / self.hash_power ) # random exponentional block publishing time 
         block = Block( self.blockchain.get_last_block().blkid , time.time() + tk , transactions , self.id )
         self.logger.info(f"Created {block} , publish at : {tk}")
-        self.publish_block( block , tk )
-
+        self.publish_block( block , tk ) 
+    
+    ### Add's the block to a global publisher thread , that publishes the block after a specified time delay 
     def publish_block(self,block:Block,tk) :
         def temp_publish_block(peer:Peer,block:Block) :
             if block.prev_blkid == peer.blockchain.get_last_block().blkid :
                self.logger.info(f"{peer} is publishing block : {block}")
                peer.blockchain.total_blocks_generated += 1
                peer.broadcast(block)
-            else : 
+            else : # Abort as longest chain changed 
                 self.logger.info(f"block aborted :: {block} by peer :: {peer} due to new chain")
                 #peer.create_and_publish_block() ## unnecessary 
         block_publisher.add_event(tk, temp_publish_block, (self,block))
-
+   
+    # Print blockchain as .png in fig/ folder 
     def print_blockchain(self):
         print(self.id)
         print("Total: ", self.blockchain.total_blocks_generated)
@@ -386,30 +392,36 @@ class Peer :
     def __str__(self) -> str:
         return str(self.id)
 
+
+### Start event simulation/worker threads 
+scheduler = PriorityQueueScheduler()
+scheduler_thread = Thread(target=scheduler.run)
+scheduler_thread.start()
+
+block_publisher = PriorityQueueScheduler1()
+block_publisher_thread = Thread(target=block_publisher.run)
+block_publisher_thread.start()
+### 
+
+### Create a connected graph of peers with given min and max connections / peer . 
 Network = generate_random_connected_graph(N)
 for i in range(N):
     Peer(i not in peers_slow, i not in peers_low_cpu)
 
 for node in Network.nodes():
     peers[node].connections = [peers[i] for i in Network.neighbors(node)]
+### Network creation of peer ends 
 
-# import networkx as nx
-# nx.draw_networkx(Network)
-# plt.show()
-
+### Create a simpy environment , that runs each peer's generate function parllelly
 env = simpy.rt.RealtimeEnvironment(factor=1)
 for p in peers:
     env.process(p.generate(env))
 
-t = Thread( target = lambda x : env.run(until = x) , args = (100,) )
-t.start()
+Thread( target = lambda time : env.run(until = time) , args = ( simpy_simulation_time ,) ).start()
+print("Program will end after ",full_simulation_time)
+time.sleep(full_simulation_time)
+for peer in peers :
+    peer.print_blockchain()
 
-while True :
-      input("The Input :: ") 
-      for peer in peers :
-          peer.print_blockchain()
+exit()
 
-scheduler_thread.join()
-
-# g = GenPlot(Blocks)
-# g.render("Blockchain", format="png")
