@@ -13,8 +13,13 @@ import simpy
 import time
 from graph import generate_random_connected_graph
 from threading import Thread
-from scheduler import PriorityQueueScheduler, PriorityQueueScheduler1
-import sys 
+from scheduler import PriorityQueueScheduler, DiscretEventScheduler
+import os 
+
+os.makedirs("peers",exist_ok=True)
+os.makedirs("fig",exist_ok=True)
+
+## Argparser 
 parser = argparse.ArgumentParser(prog='Discrete P2P Simulator')
 parser.add_argument('z0',type=float,help="Ratio of slow peers to total peers")
 parser.add_argument('z1',type=float,help="Ratio of low cpu peers to total peers")
@@ -47,9 +52,6 @@ slow_hash_power = 1/(10*N - 9*num_low_cpu)
 
 start = time.perf_counter()
 
-###########################
-# TO DO: valid_transactions() in PEER class
-###########################
 
 class Transaction :
     # A class to represent transaction with sender , reciever and coins of the transaction 
@@ -413,7 +415,7 @@ scheduler = PriorityQueueScheduler()
 scheduler_thread = Thread(target=scheduler.run)
 scheduler_thread.start()
 
-block_publisher = PriorityQueueScheduler1()
+block_publisher = DiscretEventScheduler()
 block_publisher_thread = Thread(target=block_publisher.run)
 block_publisher_thread.start()
 ### 
@@ -436,7 +438,7 @@ Thread( target = lambda time : env.run(until = time) , args = ( simpy_simulation
 print("Program will end after ",full_simulation_time,"s")
 time.sleep(full_simulation_time)
 for peer in peers :
-    peer.print_blockchain()
+    peer.print_blockchain() ## Print it to a file 
 
 exit(0)
 
