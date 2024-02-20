@@ -1,13 +1,19 @@
-<<<<<<< HEAD
-# **TEAM NAME:** *SimranOnlyFans*
-
 ## Team Members
-- Vinu Rakav S    : 210050165 (Team Leader)
-- Venkatesh K S   : 210050164 (Team Co-Leader)
-- Veeresh B Patil : 210050163 (Team Member)
+- Vinu Rakav S    : 210050165 
+- Venkatesh K S   : 210050164 
+- Veeresh B Patil : 210050163
 
-## Resources
-https://github.com/tathagatv/BlockchainSimulator
-https://github.com/km2411/p2p-blockchain-simulator
-https://github.com/dufferzafar/crypto-simulation
-https://github.com/fenilgmehta/CS765-Simulate-P2P-CryptoCurrency-Network
+## To Run 
+Install graphviz and networkx before running the main.py 
+>>> pip install graphviz networkx 
+You also need to install graphviz backend for drawing the blockchain to .png : 
+>>> sudo apt install graphviz (Linux)
+
+>>> python3 main.py [z0] [z1]
+Eg : python3 main.py 0.4 0.7
+
+You can use python3 main.py --help (To view the arguments)
+
+## Results 
+You can keyboard interrupt the script after some time . 
+You will get result of logs and blockchain png in both folders (fig & peers)

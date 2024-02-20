@@ -1,8 +1,8 @@
 import queue
-import random
-import threading
 import time
 
+### Use the synchronised python priority queue for scheduling process
+### Efficient when delay is small 
 class PriorityQueueScheduler:
     def __init__(self):
         self.events = queue.PriorityQueue()
@@ -20,8 +20,10 @@ class PriorityQueueScheduler:
                 time.sleep(next_event_time - current_time)
             func(*args)
 
+### Discrete event simulator that waits for some time until it finds a 
+### event to execute . Useful for high delay callbacks
 MIN_SLEEP = 0.5
-class PriorityQueueScheduler1 :
+class DiscretEventScheduler :
     def __init__(self):
         self.events = queue.PriorityQueue()
         

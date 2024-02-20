@@ -2,6 +2,9 @@ import networkx as nx
 import random
 
 def generate_random_connected_graph(num_nodes, min_connections=3, max_connections=6):
+    """ For each node , start adding random nodes as it neigbhours with 
+    given min and max connections . If the graph doesnt form a connected graph ,
+    then the while loop continues until it finds a connected graph"""
     while True:
         graph = nx.Graph()
         graph.add_nodes_from(range(num_nodes))
@@ -23,15 +26,4 @@ def generate_random_connected_graph(num_nodes, min_connections=3, max_connection
         if nx.is_connected(graph):
             return graph
 
-# # Set the number of peers
-# num_peers = 10
 
-# # Generate a random connected graph
-# random_connected_graph = generate_random_connected_graph(num_peers)
-
-# # Print the edges of the graph
-# print("Edges of the Random Connected Graph:")
-# print(random_connected_graph.edges())
-
-# # You can visualize the graph using networkx
-# nx.draw(random_connected_graph, with_labels=True)
