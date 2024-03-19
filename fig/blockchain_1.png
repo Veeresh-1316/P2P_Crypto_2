@@ -1,0 +1,35 @@
+digraph blockchain {
+	graph [rankdir=RL]
+	node [fontname=Arial shape=record style="rounded,filled"]
+	"2ca20ba1f2b0759b16114771f23dca89" [label="<hash> Hash=2ca20ba |<link> Link=-1 | MineTime=1708374920.0| {Idx=0 | Miner=-1}| {NewTxnIncluded=0}"]
+	e6c01d64580726ed20cafde1ecd5feaa [label="<hash> Hash=e6c01d6 |<link> Link=2ca20ba | MineTime=1708375554.7| {Idx=1 | Miner=2}| {NewTxnIncluded=1}"]
+	fb2fcecccc277f1973f284644c347121 [label="<hash> Hash=fb2fcec |<link> Link=e6c01d6 | MineTime=1708375574.6| {Idx=2 | Miner=1}| {NewTxnIncluded=7}"]
+	"1b54913b2d04793d31fc5d84ab831215" [label="<hash> Hash=1b54913 |<link> Link=fb2fcec | MineTime=1708375583.5| {Idx=3 | Miner=1}| {NewTxnIncluded=19}"]
+	"9e6db8d6e900165cfd7274a11583d6b1" [label="<hash> Hash=9e6db8d |<link> Link=fb2fcec | MineTime=1708375583.1| {Idx=3 | Miner=3}| {NewTxnIncluded=20}"]
+	"5f6d9da43bb8b5f2626daf7f93220ba3" [label="<hash> Hash=5f6d9da |<link> Link=9e6db8d | MineTime=1708375588.8| {Idx=4 | Miner=2}| {NewTxnIncluded=9}"]
+	f79d28b11140bd45740a0e6a2a27affe [label="<hash> Hash=f79d28b |<link> Link=5f6d9da | MineTime=1708375612.0| {Idx=5 | Miner=3}| {NewTxnIncluded=3}"]
+	"71b6b18e58704cf7bdc9f6779b393ae3" [label="<hash> Hash=71b6b18 |<link> Link=f79d28b | MineTime=1708375615.5| {Idx=6 | Miner=0}| {NewTxnIncluded=24}"]
+	"04b5ecc1d87fb70749088756234737f0" [label="<hash> Hash=04b5ecc |<link> Link=71b6b18 | MineTime=1708375625.6| {Idx=7 | Miner=3}| {NewTxnIncluded=6}"]
+	"56bd621df659892c3e016986baedf068" [label="<hash> Hash=56bd621 |<link> Link=04b5ecc | MineTime=1708375657.3| {Idx=8 | Miner=4}| {NewTxnIncluded=10}"]
+	"3e56b13f624499af5f2c48368235fef0" [label="<hash> Hash=3e56b13 |<link> Link=56bd621 | MineTime=1708375666.9| {Idx=9 | Miner=0}| {NewTxnIncluded=32}"]
+	"50b6e0560c519f1e580222eeffd6ced3" [label="<hash> Hash=50b6e05 |<link> Link=3e56b13 | MineTime=1708375671.2| {Idx=10 | Miner=3}| {NewTxnIncluded=1}"]
+	"666abfdb3c58091ee06e1bf00a19894f" [label="<hash> Hash=666abfd |<link> Link=50b6e05 | MineTime=1708375673.9| {Idx=11 | Miner=0}| {NewTxnIncluded=1}"]
+	"3e3d2ff181bddf2e7d66ae142d63422e" [label="<hash> Hash=3e3d2ff |<link> Link=666abfd | MineTime=1708375685.8| {Idx=12 | Miner=1}| {NewTxnIncluded=1}"]
+	"6f3a219233e304395154f9d43cee6b1b" [label="<hash> Hash=6f3a219 |<link> Link=666abfd | MineTime=1708375685.8| {Idx=12 | Miner=3}| {NewTxnIncluded=1}"]
+	b9447839e06cedcca85fe5929d12cc64 [label="<hash> Hash=b944783 |<link> Link=6f3a219 | MineTime=1708375691.5| {Idx=13 | Miner=0}| {NewTxnIncluded=1}"]
+	e6c01d64580726ed20cafde1ecd5feaa -> "2ca20ba1f2b0759b16114771f23dca89"
+	fb2fcecccc277f1973f284644c347121 -> e6c01d64580726ed20cafde1ecd5feaa
+	"1b54913b2d04793d31fc5d84ab831215" -> fb2fcecccc277f1973f284644c347121
+	"9e6db8d6e900165cfd7274a11583d6b1" -> fb2fcecccc277f1973f284644c347121
+	"5f6d9da43bb8b5f2626daf7f93220ba3" -> "9e6db8d6e900165cfd7274a11583d6b1"
+	f79d28b11140bd45740a0e6a2a27affe -> "5f6d9da43bb8b5f2626daf7f93220ba3"
+	"71b6b18e58704cf7bdc9f6779b393ae3" -> f79d28b11140bd45740a0e6a2a27affe
+	"04b5ecc1d87fb70749088756234737f0" -> "71b6b18e58704cf7bdc9f6779b393ae3"
+	"56bd621df659892c3e016986baedf068" -> "04b5ecc1d87fb70749088756234737f0"
+	"3e56b13f624499af5f2c48368235fef0" -> "56bd621df659892c3e016986baedf068"
+	"50b6e0560c519f1e580222eeffd6ced3" -> "3e56b13f624499af5f2c48368235fef0"
+	"666abfdb3c58091ee06e1bf00a19894f" -> "50b6e0560c519f1e580222eeffd6ced3"
+	"3e3d2ff181bddf2e7d66ae142d63422e" -> "666abfdb3c58091ee06e1bf00a19894f"
+	"6f3a219233e304395154f9d43cee6b1b" -> "666abfdb3c58091ee06e1bf00a19894f"
+	b9447839e06cedcca85fe5929d12cc64 -> "6f3a219233e304395154f9d43cee6b1b"
+}

@@ -15,5 +15,6 @@ Eg : python3 main.py 0.4 0.7
 You can use python3 main.py --help (To view the arguments)
 
 ## Results 
-You can keyboard interrupt the script after some time . 
-You will get result of logs and blockchain png in both folders (fig & peers)
+You can keyboard interrupt the script after some time.
+After interrupt, 
+You will get result of logs and blockchain png in respective folders (fig & peers)
