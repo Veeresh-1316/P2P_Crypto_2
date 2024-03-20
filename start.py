@@ -22,34 +22,32 @@ os.makedirs("fig",exist_ok=True)
 
 ## Argparser 
 parser = argparse.ArgumentParser(prog='Discrete P2P Simulator')
-parser.add_argument('z0',type=float,help="Ratio of slow peers to total peers")
-parser.add_argument('z1',type=float,help="Ratio of low cpu peers to total peers")
+parser.add_argument('h1',type=float,help="Hash power of first adversary")
+parser.add_argument('h2',type=float,help="Hash power of second adversary")
 args = parser.parse_args()
 
 ### Tunable paramters 
-N = 30
+N = 28  # no. of honest miners
 interarrival_mean_time = 5
 interarrival_mean_block_time = 5
 size_of_transaction = 8    # kilo-bits
 max_transactions_per_block = 1000
-hash_ratio = {True: 10, False: 1}
 COINBASE_COINS_PER_TRANSACTION = 50
 
 simpy_simulation_time = 70 # time to generate transaction 
 full_simulation_time = 100 # Full time to end program 
-z0 = args.z0 # between 0 and 1 
-z1 = args.z1 # between 0 and 1 
+h1 = args.h1 # between 0 and 1 
+h2 = args.h2 # between 0 and 1
 ### End tunable parameters
 
 
-num_slow = int(z0*N)
-num_low_cpu = int(z1*N)
+num_slow = int(N//2)
 rho = random.random()*490 + 10     # ms - light propagation delay
 
 peers = []
 peers_slow = np.random.choice(N, num_slow, replace=False)
-peers_low_cpu = np.random.choice(N, num_low_cpu, replace=False)
-slow_hash_power = 1/(10*N - 9*num_low_cpu)
+honest_hash_power = (1-h1-h2)/N
+attack_hash_power = [h1, h2]
 
 start = time.perf_counter()
 
@@ -69,6 +67,9 @@ class Transaction :
     def __repr__(self):
         #TxnID: IDx pays IDy C coins
         return f"{self.txid}: {self.sender} pays {self.receiver} {self.coins} coins"
+
+    def size(self):
+        return size_of_transaction
 
 class CoinBaseTransaction(Transaction) :
       # A special subclass of transaction where the sender is None and coins = 50 
@@ -171,16 +172,12 @@ class BlockChain :
         ancestor_old = old_longest_blkid
         ancestor_new = new_longest_blkid
 
-        while min_depth < self.depth[ancestor_old]:
-            if(self.blocks_all[ancestor_old].miner_id == self.peer.id) :
-                self.blocks_in_longest_chain -= 1
-            self.txn_pool = self.txn_pool - set(self.blocks_all[ancestor_old].transactions)
-            ancestor_old = self.blocks_all[ancestor_old].prev_blkid
         while min_depth < self.depth[ancestor_new]:
             if(self.blocks_all[ancestor_new].miner_id == self.peer.id) :
                 self.blocks_in_longest_chain += 1
             self.txn_pool = self.txn_pool | set(self.blocks_all[ancestor_new].transactions)
             ancestor_new = self.blocks_all[ancestor_new].prev_blkid
+            
         while ancestor_old != ancestor_new:
             if(self.blocks_all[ancestor_old].miner_id == self.peer.id) :
                 self.blocks_in_longest_chain -= 1
@@ -262,8 +259,8 @@ class BlockChain :
             for t in block.transactions:
                 self.all_transactions.add(t)
 
+            self.change_mining_branch(new_block.blkid)
             if (new_length > self.longest_length):
-                self.change_mining_branch(new_block.blkid)
                 self.longest_length = new_length
                 self.longest_block = new_block
                 return True     ## create new block
@@ -284,7 +281,10 @@ class Peer :
         self.recieved_transactions = set()
         self.connections = []
         self.blockchain = BlockChain(self)  # It has a blockchain object which maintains its blockchain data 
-        self.hash_power = slow_hash_power * hash_ratio[cpu]
+        if not cpu:
+            self.hash_power = honest_hash_power
+        else:
+            self.hash_power = attack_hash_power[self.id - N]
         
         self.logger = logging.getLogger(f"peer_{self.id}")  # Logger 
         self.logger.setLevel(logging.DEBUG)
@@ -326,7 +326,7 @@ class Peer :
                self.logger.info(f"Recieved {msg}")
                tasks = []
                for peer in self.connections :
-                   latency = self.get_latency(peer, size_of_transaction)
+                   latency = self.get_latency(peer, msg.size())
                    self.logger.info(f"Sending {msg} , at latency : {latency} , to : {peer}")
                    tasks.append(  peer.broadcast(msg , latency)  )
 
@@ -406,10 +406,110 @@ class Peer :
     def __str__(self) -> str:
         return str(self.id)
 
+
+class Selfish_Miner(Peer):
+    def __init__(self, speed, cpu):
+        super().__init__(speed, cpu)
+        self.private_lead = 0
+        self.private_longest_block = GENESIS_BLOCK
+        self.private_queue = list()
+    
+    async def generate(self):
+        pass
+
+    async def broadcast(self, msg , delay = 0 ):
+        if(isinstance(msg, Transaction)):
+            return
+        if(msg.miner_id == self):
+            return
+
+        await asyncio.sleep(delay) 
+        
+        ### Loopless implementation of brodcasting in network 
+        # if is msg is already recieved , it is stored in the queue . the next time it will be ignored 
+        # else , Add the msg in queue . Do appropiate action
+
+        self.logger.info(f"Recieved {msg}")
+        tasks = []
+        
+
+        if self.blockchain.add_block(msg) :  # This function returns if it creates a new long chain 
+            await self.release_block(msg)
+        else : 
+            self.logger.info(f"Invalid / Non Longest Chain Block {msg}")
+            
+        asyncio.gather(*tasks)
+
+    async def send_blocks(self, blocks):
+        for block in blocks:
+            self.blockchain.add_block(block)
+            for peer in self.connections :
+                latency = self.get_latency(peer, block.size())
+                self.logger.info(f"Sending {block} , at latency : {latency} , to : {peer}")
+                asyncio.create_task(peer.broadcast(block, latency))
+
+    async def release_block(self) :
+        if len(self.private_queue) == 0:
+            self.private_longest_block = self.blockchain.longest_block
+            self.private_lead = 0
+            self.mine_privately()
+
+
+        lvc = self.blockchain.longest_length - self.blockchain.depth[self.private_queue[0].prev_blkid]
+        pvc = len(self.private_queue)
+        lead = pvc - lvc         
+
+        if lead < 0:
+            self.private_lead = 0
+            self.private_longest_block = self.blockchain.longest_block
+            self.private_queue = []
+            self.mine_privately()
+        elif lead == 0 or lead == 1:
+            asyncio.create_task(self.send_blocks(self.private_queue))
+            self.private_queue = []
+            self.private_lead = lead
+        else:
+            asyncio.create_task(self.send_blocks(self.private_queue[:1]))
+            self.private_queue = self.private_queue[1:]
+            self.private_lead -= 1
+
+    async def create_and_publish_block(self):
+        return await self.mine_privately()
+    
+    async def mine_privately(self) :
+        #Get a list of valid transaction , that are not in longest chain 
+
+        coinbase_transaction = CoinBaseTransaction(self) # Add coinbase transaction
+        tk = np.random.exponential( interarrival_mean_block_time / self.hash_power ) # random exponentional block publishing time 
+        block = Block( self.private_longest_block.blkid , time.time() + tk , coinbase_transaction , self.id )
+        self.logger.info(f"Created {block} , publish at : {tk}")
+
+        await asyncio.sleep(tk)
+        if block.prev_blkid == self.private_longest_block.blkid:
+            self.logger.info(f"{self} is publishing block : {block}")
+            self.blockchain.total_blocks_generated += 1
+            self.private_queue.append(block)
+            self.private_longest_block = block
+
+        else : # Abort as longest chain changed 
+            self.logger.info(f"block aborted :: {block} by peer :: {self} due to new chain")
+
+### Start event simulation/worker threads 
+scheduler = PriorityQueueScheduler()
+scheduler_thread = Thread(target=scheduler.run)
+scheduler_thread.start()
+
+block_publisher = DiscretEventScheduler()
+block_publisher_thread = Thread(target=block_publisher.run)
+block_publisher_thread.start()
+### 
+
 ### Create a connected graph of peers with given min and max connections / peer . 
-Network = generate_random_connected_graph(N)
+Network = generate_random_connected_graph(N+2)
 for i in range(N):
-    Peer(i not in peers_slow, i not in peers_low_cpu)
+    Peer(i not in peers_slow, True)
+Selfish_Miner(True, False)
+Selfish_Miner(True, False)
 
 for node in Network.nodes():
     peers[node].connections = [peers[i] for i in Network.neighbors(node)]
