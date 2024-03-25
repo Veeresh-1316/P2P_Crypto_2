@@ -268,6 +268,19 @@ class BlockChain :
             else:
                 return False
    
+    def get_MPU_ratio(self, p):
+        peer_count = 0
+        total_count = 0
+        node = self.longest_block
+        while node != GENESIS_BLOCK:
+            if node.blkid == p:
+                peer_count += 1
+            total_count += 1
+            node = self.blocks_all[node.prev_blkid]
+
+        return peer_count/total_count
+
+
 class Peer :
     ### One peer object / peer in network (speed & cpu) . 
     ### Its activity is logged in peer/peer_{id}.txt 
@@ -388,6 +401,13 @@ class Peer :
     
         genesis_block_id = GENESIS_BLOCK.blkid
         Blocks = self.blockchain.blocks_all
+
+        longest_chain = set()
+        node = self.blockchain.longest_block.blkid
+        while node != GENESIS_BLOCK.blkid:
+            longest_chain.add(node)
+            node = Blocks[node].prev_blkid
+
         for key in Blocks :
             block = Blocks[key]
             block_label = f'<hash> Hash={str(block.blkid)[:7]} ' \
@@ -396,14 +416,29 @@ class Peer :
                         f'| {{Idx={self.blockchain.depth[ key ]} | Miner={block.miner_id}}}' \
                         f'| {{NewTxnIncluded={ len(block.transactions)  }}}'
             self.logger.info(f"graph :: {key}")
-            if block.miner_id == N :  
-              g.node(name=key, label=block_label,_attributes = {"fillcolor":"#ff4d4f"})
-            if block.miner_id == N+1 :  
-              g.node(name=key, label=block_label,_attributes = {"fillcolor":"#40a9ff"})
-            else :
-                g.node(name=key, label=block_label)
 
+            if key in longest_chain:    # Add yellow border
+                if block.miner_id == N :  
+                    g.node(name=key, label=block_label, _attributes = {"color":"yellow", "fillcolor":"lightblue"})
+                if block.miner_id == N+1 :  
+                    g.node(name=key, label=block_label, _attributes = {"color":"yellow", "fillcolor":"pink"})
+                else :
+                    g.node(name=key, label=block_label, _attributes = {"color":"yellow", "fillcolor":"lightgrey"})
+            else:
+                if block.miner_id == N :  
+                    g.node(name=key, label=block_label, _attributes = {"fillcolor":"lightblue"})
+                if block.miner_id == N+1 :  
+                    g.node(name=key, label=block_label, _attributes = {"fillcolor":"pink"})
+                else :
+                    g.node(name=key, label=block_label, _attributes = {"fillcolor":"lightgrey"})
 
+        # show number of unpublished blocks for adversary
+        if self.id == N:
+            g.node(name="MORE", label=f'+{len(self.private_queue)}', _attributes = {"color":"lightblue", "fillcolor":"white"})
+            g.edge(tail_name=f'MORE', head_name=f'{self.private_longest_block}')
+        elif self.id == N+1:
+            g.node(name="MORE", label=f'+{len(self.private_queue)}', _attributes = {"color":"red", "fillcolor":"white"})
+            g.edge(tail_name=f'MORE', head_name=f'{self.private_longest_block}')
     
         for key in Blocks:
             if key != genesis_block_id:
@@ -531,7 +566,17 @@ async def input_thread() :
     i = await asyncio.to_thread(input, "Press p to print & e to exit :")
     while True : 
         for peer in peers : 
-            peer.print_blockchain() ## Print it to a file 
+            peer.print_blockchain() ## Print it to a file
+        
+        mpu_index = random.randint(0, N-1)
+        mpu_0 = peers[mpu_index].blockchain.get_MPU_ratio(mpu_index)
+        mpu_1 = peers[mpu_index].blockchain.get_MPU_ratio(N)
+        mpu_2 = peers[mpu_index].blockchain.get_MPU_ratio(N+1)
+
+        print(f'MPU_{mpu_index}_self = {mpu_0}')
+        print(f'MPU_{mpu_index}_adv1 = {mpu_1}')
+        print(f'MPU_{mpu_index}_adv2 = {mpu_2}')
+
         if i == "e" : break 
         i = await asyncio.to_thread(input, "Press p to print & e to exit :")
     import os 
