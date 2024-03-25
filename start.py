@@ -28,8 +28,8 @@ args = parser.parse_args()
 
 ### Tunable paramters 
 N = 28  # no. of honest miners
-interarrival_mean_time = 5
-interarrival_mean_block_time = 5
+interarrival_mean_time = 0.5
+interarrival_mean_block_time = 2
 size_of_transaction = 8    # kilo-bits
 max_transactions_per_block = 1000
 COINBASE_COINS_PER_TRANSACTION = 50
@@ -103,7 +103,7 @@ class Block :
         return self.prev_blkid
 
 GENESIS_BLOCK = Block(-1, time.time() - start, [],-1)
-INTIAL_BALANCES = np.random.randint(50,size=N) 
+INTIAL_BALANCES = np.random.randint(50,size=N+2) 
 
 ## Blockchain class representing the blockchain data stored in a peer
 class BlockChain :
@@ -167,12 +167,11 @@ class BlockChain :
         old_longest_blkid = self.longest_block.blkid
         old_depth = self.depth[old_longest_blkid]
         new_depth = self.depth[new_longest_blkid]
-        min_depth = min(old_depth, new_depth)
 
         ancestor_old = old_longest_blkid
         ancestor_new = new_longest_blkid
 
-        while min_depth < self.depth[ancestor_new]:
+        while old_depth < self.depth[ancestor_new]:
             if(self.blocks_all[ancestor_new].miner_id == self.peer.id) :
                 self.blocks_in_longest_chain += 1
             self.txn_pool = self.txn_pool | set(self.blocks_all[ancestor_new].transactions)
@@ -182,7 +181,7 @@ class BlockChain :
             if(self.blocks_all[ancestor_old].miner_id == self.peer.id) :
                 self.blocks_in_longest_chain -= 1
             if(self.blocks_all[ancestor_new].miner_id == self.peer.id) :
-                self.blocks_in_longest_chain += 1
+                self.blocks_in_longest_chain += 1; 
             self.txn_pool = self.txn_pool - set(self.blocks_all[ancestor_old].transactions)
             self.txn_pool = self.txn_pool | set(self.blocks_all[ancestor_new].transactions)
             ancestor_old = self.blocks_all[ancestor_old].prev_blkid
@@ -256,11 +255,13 @@ class BlockChain :
             self.depth[blkid] = self.depth[parent_id] + 1
 
             (new_length, new_block) = self.check_and_add_unadded(block)
+
+            self.peer.logger.info(f"Adding block {block} at time {time.time()}")
             for t in block.transactions:
                 self.all_transactions.add(t)
 
-            self.change_mining_branch(new_block.blkid)
             if (new_length > self.longest_length):
+                self.change_mining_branch(new_block.blkid)
                 self.longest_length = new_length
                 self.longest_block = new_block
                 return True     ## create new block
@@ -281,7 +282,7 @@ class Peer :
         self.recieved_transactions = set()
         self.connections = []
         self.blockchain = BlockChain(self)  # It has a blockchain object which maintains its blockchain data 
-        if not cpu:
+        if cpu:
             self.hash_power = honest_hash_power
         else:
             self.hash_power = attack_hash_power[self.id - N]
@@ -372,7 +373,7 @@ class Peer :
         if block.prev_blkid == self.blockchain.get_last_block().blkid :
                self.logger.info(f"{self} is publishing block : {block}")
                self.blockchain.total_blocks_generated += 1
-               await self.broadcast(block)
+               asyncio.create_task(self.broadcast(block))
         else : # Abort as longest chain changed 
                 self.logger.info(f"block aborted :: {block} by peer :: {self} due to new chain")
 
@@ -395,7 +396,14 @@ class Peer :
                         f'| {{Idx={self.blockchain.depth[ key ]} | Miner={block.miner_id}}}' \
                         f'| {{NewTxnIncluded={ len(block.transactions)  }}}'
             self.logger.info(f"graph :: {key}")
-            g.node(name=key, label=block_label)
+            if block.miner_id == N :  
+              g.node(name=key, label=block_label,_attributes = {"fillcolor":"#ff4d4f"})
+            if block.miner_id == N+1 :  
+              g.node(name=key, label=block_label,_attributes = {"fillcolor":"#40a9ff"})
+            else :
+                g.node(name=key, label=block_label)
+
+
     
         for key in Blocks:
             if key != genesis_block_id:
@@ -405,7 +413,6 @@ class Peer :
 
     def __str__(self) -> str:
         return str(self.id)
-
 
 class Selfish_Miner(Peer):
     def __init__(self, speed, cpu):
@@ -434,7 +441,7 @@ class Selfish_Miner(Peer):
         
 
         if self.blockchain.add_block(msg) :  # This function returns if it creates a new long chain 
-            await self.release_block(msg)
+            await self.release_block()
         else : 
             self.logger.info(f"Invalid / Non Longest Chain Block {msg}")
             
@@ -449,21 +456,24 @@ class Selfish_Miner(Peer):
                 asyncio.create_task(peer.broadcast(block, latency))
 
     async def release_block(self) :
+        self.logger.info(f"Entered release_block")
         if len(self.private_queue) == 0:
             self.private_longest_block = self.blockchain.longest_block
             self.private_lead = 0
-            self.mine_privately()
+            asyncio.create_task( self.mine_privately() )
+            return 
 
 
         lvc = self.blockchain.longest_length - self.blockchain.depth[self.private_queue[0].prev_blkid]
         pvc = len(self.private_queue)
         lead = pvc - lvc         
 
+        self.logger.info(f"Lead = {lead}")
         if lead < 0:
             self.private_lead = 0
             self.private_longest_block = self.blockchain.longest_block
             self.private_queue = []
-            self.mine_privately()
+            asyncio.create_task( self.mine_privately() ) 
         elif lead == 0 or lead == 1:
             asyncio.create_task(self.send_blocks(self.private_queue))
             self.private_queue = []
@@ -479,7 +489,7 @@ class Selfish_Miner(Peer):
     async def mine_privately(self) :
         #Get a list of valid transaction , that are not in longest chain 
 
-        coinbase_transaction = CoinBaseTransaction(self) # Add coinbase transaction
+        coinbase_transaction = [ CoinBaseTransaction(self) ] # Add coinbase transaction
         tk = np.random.exponential( interarrival_mean_block_time / self.hash_power ) # random exponentional block publishing time 
         block = Block( self.private_longest_block.blkid , time.time() + tk , coinbase_transaction , self.id )
         self.logger.info(f"Created {block} , publish at : {tk}")
@@ -490,6 +500,7 @@ class Selfish_Miner(Peer):
             self.blockchain.total_blocks_generated += 1
             self.private_queue.append(block)
             self.private_longest_block = block
+            asyncio.create_task(self.mine_privately())
 
         else : # Abort as longest chain changed 
             self.logger.info(f"block aborted :: {block} by peer :: {self} due to new chain")
@@ -508,6 +519,7 @@ block_publisher_thread.start()
 Network = generate_random_connected_graph(N+2)
 for i in range(N):
     Peer(i not in peers_slow, True)
+
 Selfish_Miner(True, False)
 Selfish_Miner(True, False)
 
