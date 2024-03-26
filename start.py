@@ -167,21 +167,36 @@ class BlockChain :
         old_longest_blkid = self.longest_block.blkid
         old_depth = self.depth[old_longest_blkid]
         new_depth = self.depth[new_longest_blkid]
+        min_depth = min(old_depth, new_depth)
 
         ancestor_old = old_longest_blkid
         ancestor_new = new_longest_blkid
 
-        while old_depth < self.depth[ancestor_new]:
+        while min_depth < self.depth[ancestor_old]:
+            if(self.blocks_all[ancestor_old].miner_id == self.peer.id) :
+                self.blocks_in_longest_chain -= 1
+            self.txn_pool = self.txn_pool - set(self.blocks_all[ancestor_old].transactions)
+            ancestor_old = self.blocks_all[ancestor_old].prev_blkid
+        while min_depth < self.depth[ancestor_new]:
             if(self.blocks_all[ancestor_new].miner_id == self.peer.id) :
                 self.blocks_in_longest_chain += 1
             self.txn_pool = self.txn_pool | set(self.blocks_all[ancestor_new].transactions)
             ancestor_new = self.blocks_all[ancestor_new].prev_blkid
-            
         while ancestor_old != ancestor_new:
             if(self.blocks_all[ancestor_old].miner_id == self.peer.id) :
                 self.blocks_in_longest_chain -= 1
-            if(self.blocks_all[ancestor_new].miner_id == self.peer.id) :
-                self.blocks_in_longest_chain += 1; 
+            try:
+                if(self.blocks_all[ancestor_new].miner_id == self.peer.id) :
+                    self.blocks_in_longest_chain += 1
+            except KeyError as e:
+                print(f"Caught a KeyError: {e}")
+                print("Peer: ", self.peer.id)
+                print("New: ", ancestor_new)
+                for i in self.blocks_all:
+                    print(i, self.blocks_all[i], self.blocks_all[i].prev_blkid)
+            except Exception as e:
+                print(f"An unexpected error occurred: {e}")
+
             self.txn_pool = self.txn_pool - set(self.blocks_all[ancestor_old].transactions)
             self.txn_pool = self.txn_pool | set(self.blocks_all[ancestor_new].transactions)
             ancestor_old = self.blocks_all[ancestor_old].prev_blkid
@@ -273,11 +288,12 @@ class BlockChain :
         total_count = 0
         node = self.longest_block
         while node != GENESIS_BLOCK:
-            if node.blkid == p:
+            if node.miner_id == p:
                 peer_count += 1
             total_count += 1
             node = self.blocks_all[node.prev_blkid]
 
+        total_count += 1 # to count GENESIS BLOCK
         return peer_count/total_count
 
 
@@ -342,15 +358,15 @@ class Peer :
                for peer in self.connections :
                    latency = self.get_latency(peer, msg.size())
                    self.logger.info(f"Sending {msg} , at latency : {latency} , to : {peer}")
-                   tasks.append(  peer.broadcast(msg , latency)  )
+                   tasks.append( asyncio.create_task( peer.broadcast(msg , latency) ) )
 
                if isinstance(msg,Block) :
                    block = msg
                    if self.blockchain.add_block(block) :  # This function returns if it creates a new long chain 
-                      tasks.append( self.create_and_publish_block() ) # Create a block and add to publish thread 
+                      tasks.append( asyncio.create_task( self.create_and_publish_block() )) # Create a block and add to publish thread 
                    else : 
                        self.logger.info(f"Invalid / Non Longest Chain Block {msg}")
-               asyncio.gather(*tasks)
+               await asyncio.wait(tasks, return_when=asyncio.ALL_COMPLETED)
 
     ### Check if a transaction is valid , by using the balances of the peer from the blockchain 
     def valid_transactions(self, transactions:list[Transaction],n):
@@ -386,7 +402,7 @@ class Peer :
         if block.prev_blkid == self.blockchain.get_last_block().blkid :
                self.logger.info(f"{self} is publishing block : {block}")
                self.blockchain.total_blocks_generated += 1
-               asyncio.create_task(self.broadcast(block))
+               await asyncio.create_task(self.broadcast(block))
         else : # Abort as longest chain changed 
                 self.logger.info(f"block aborted :: {block} by peer :: {self} due to new chain")
 
@@ -420,25 +436,27 @@ class Peer :
             if key in longest_chain:    # Add yellow border
                 if block.miner_id == N :  
                     g.node(name=key, label=block_label, _attributes = {"color":"yellow", "fillcolor":"lightblue"})
-                if block.miner_id == N+1 :  
+                elif block.miner_id == N+1 :  
                     g.node(name=key, label=block_label, _attributes = {"color":"yellow", "fillcolor":"pink"})
                 else :
                     g.node(name=key, label=block_label, _attributes = {"color":"yellow", "fillcolor":"lightgrey"})
             else:
                 if block.miner_id == N :  
                     g.node(name=key, label=block_label, _attributes = {"fillcolor":"lightblue"})
-                if block.miner_id == N+1 :  
+                elif block.miner_id == N+1 :  
                     g.node(name=key, label=block_label, _attributes = {"fillcolor":"pink"})
                 else :
                     g.node(name=key, label=block_label, _attributes = {"fillcolor":"lightgrey"})
 
         # show number of unpublished blocks for adversary
         if self.id == N:
-            g.node(name="MORE", label=f'+{len(self.private_queue)}', _attributes = {"color":"lightblue", "fillcolor":"white"})
-            g.edge(tail_name=f'MORE', head_name=f'{self.private_longest_block}')
+            if(len(self.private_queue) > 0):
+                g.node(name="MORE", label=f'+{len(self.private_queue)}', _attributes = {"color":"lightblue", "fillcolor":"white"})
+                g.edge(tail_name=f'MORE', head_name=f'{self.private_queue[0].prev_blkid}')
         elif self.id == N+1:
-            g.node(name="MORE", label=f'+{len(self.private_queue)}', _attributes = {"color":"red", "fillcolor":"white"})
-            g.edge(tail_name=f'MORE', head_name=f'{self.private_longest_block}')
+            if(len(self.private_queue) > 0):
+                g.node(name="MORE", label=f'+{len(self.private_queue)}', _attributes = {"color":"red", "fillcolor":"white"})
+                g.edge(tail_name=f'MORE', head_name=f'{self.private_queue[0].prev_blkid}')
     
         for key in Blocks:
             if key != genesis_block_id:
@@ -471,16 +489,17 @@ class Selfish_Miner(Peer):
         # if is msg is already recieved , it is stored in the queue . the next time it will be ignored 
         # else , Add the msg in queue . Do appropiate action
 
+        if msg in self.recieved_blocks:
+            return
+        
         self.logger.info(f"Recieved {msg}")
-        tasks = []
         
 
         if self.blockchain.add_block(msg) :  # This function returns if it creates a new long chain 
             await self.release_block()
         else : 
             self.logger.info(f"Invalid / Non Longest Chain Block {msg}")
-            
-        asyncio.gather(*tasks)
+
 
     async def send_blocks(self, blocks):
         for block in blocks:
@@ -516,7 +535,7 @@ class Selfish_Miner(Peer):
         else:
             asyncio.create_task(self.send_blocks(self.private_queue[:1]))
             self.private_queue = self.private_queue[1:]
-            self.private_lead -= 1
+            self.private_lead = lead
 
     async def create_and_publish_block(self):
         return await self.mine_privately()
@@ -582,9 +601,14 @@ async def input_thread() :
     import os 
     os._exit(0)
 
-async def main() : 
-    publish_block = tuple( (peer.create_and_publish_block() for peer in peers) )
-    generate_txns = tuple( (peer.generate() for peer in peers) )
-    await asyncio.gather( input_thread() , *publish_block , *generate_txns ) 
+async def main() :
+    tasks = []
+    tasks.append(asyncio.create_task(input_thread()))
+    for i in range(N):
+        tasks.append(asyncio.create_task(peers[i].generate()))
+    for i in range(N+2):
+        tasks.append(asyncio.create_task(peers[i].create_and_publish_block()))
+
+    await asyncio.wait( tasks, return_when=asyncio.ALL_COMPLETED ) 
 
 asyncio.run(main())
