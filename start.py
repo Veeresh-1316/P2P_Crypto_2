@@ -10,6 +10,7 @@ import random
 from matplotlib import pyplot as plt
 from graphviz import Digraph
 import numpy as np
+from copy import copy
 import simpy
 import time
 from graph import generate_random_connected_graph
@@ -108,7 +109,7 @@ INTIAL_BALANCES = np.random.randint(50,size=N+2)
 ## Blockchain class representing the blockchain data stored in a peer
 class BlockChain :
     
-    def __init__(self,peer):
+    def __init__(self, peer):
         self.GENESIS_BLOCK = GENESIS_BLOCK
         self.blocks_all = {GENESIS_BLOCK.blkid: GENESIS_BLOCK}
         self.unadded_blocks = set()
@@ -138,6 +139,9 @@ class BlockChain :
         new_balance = np.copy(parent_balances)
         transactions: list[Transaction] = block.transactions 
         valid = True
+
+        if len(transactions) == 0:
+            return valid, new_balance
 
         if transactions[0].sender is None:
             if transactions[0].coins > COINBASE_COINS_PER_TRANSACTION : 
@@ -185,24 +189,15 @@ class BlockChain :
         while ancestor_old != ancestor_new:
             if(self.blocks_all[ancestor_old].miner_id == self.peer.id) :
                 self.blocks_in_longest_chain -= 1
-            try:
-                if(self.blocks_all[ancestor_new].miner_id == self.peer.id) :
-                    self.blocks_in_longest_chain += 1
-            except KeyError as e:
-                print(f"Caught a KeyError: {e}")
-                print("Peer: ", self.peer.id)
-                print("New: ", ancestor_new)
-                for i in self.blocks_all:
-                    print(i, self.blocks_all[i], self.blocks_all[i].prev_blkid)
-            except Exception as e:
-                print(f"An unexpected error occurred: {e}")
+            if(self.blocks_all[ancestor_new].miner_id == self.peer.id) :
+                self.blocks_in_longest_chain += 1
 
             self.txn_pool = self.txn_pool - set(self.blocks_all[ancestor_old].transactions)
             self.txn_pool = self.txn_pool | set(self.blocks_all[ancestor_new].transactions)
             ancestor_old = self.blocks_all[ancestor_old].prev_blkid
             ancestor_new = self.blocks_all[ancestor_new].prev_blkid
     
-    def pop_blocks_with_parent(self, block):
+    def pop_blocks_with_parent(self, block:Block):
         invalid_blocks = []
         for i in self.unadded_blocks:
             if i.prev_blkid == block.blkid:
@@ -211,26 +206,26 @@ class BlockChain :
             self.pop_blocks_with_parent(i)
             self.unadded_blocks.remove(i)
 
-    def check_and_add_unadded(self, block):
+    def check_and_add_unadded(self, block:Block):
         added_blocks = []
         invalid_blocks = []
         length = self.depth[block.blkid]
         blk = block
 
         for i in self.unadded_blocks:
-            if i.prev_blkid == block.blkid:
+            if i.prev_blkid == blk.blkid:
                 # VALIDATE
                 # ADD THIS NEW BLOCK TO BLOCKCHAIN
 
-                valid, new_balance = self.is_valid(block)
+                valid, new_balance = self.is_valid(i)
 
                 if not valid:
                     invalid_blocks.append(i)
 
                 self.balances[i.blkid] = np.copy(new_balance)
-                self.blocks_all[i.blkid] = block
-                self.depth[i.blkid] = self.depth[block.blkid] + 1
-
+                self.blocks_all[i.blkid] = i
+                self.depth[i.blkid] = self.depth[blk.blkid] + 1
+                
                 for t in i.transactions:
                     self.all_transactions.add(t)
 
@@ -250,9 +245,10 @@ class BlockChain :
         return length, blk
     
     #Add a block to the blockchain if valid and return if the block creates a new longest chain 
-    def add_block(self, block):
+    def add_block(self, block:Block):
         parent_id = block.prev_blkid
         blkid = block.blkid
+        blk = block
 
         if blkid in self.blocks_all:
             return False
@@ -270,6 +266,7 @@ class BlockChain :
             self.depth[blkid] = self.depth[parent_id] + 1
 
             (new_length, new_block) = self.check_and_add_unadded(block)
+            # print("4: ", blk, block)
 
             self.peer.logger.info(f"Adding block {block} at time {time.time()}")
             for t in block.transactions:
@@ -284,9 +281,13 @@ class BlockChain :
                 return False
    
     def get_MPU_ratio(self, p):
+        if p == -1:
+            return (self.longest_length + 1) / len(self.blocks_all)
+        
         peer_count = 0
         total_count = 0
         node = self.longest_block
+
         while node != GENESIS_BLOCK:
             if node.miner_id == p:
                 peer_count += 1
@@ -358,22 +359,22 @@ class Peer :
                for peer in self.connections :
                    latency = self.get_latency(peer, msg.size())
                    self.logger.info(f"Sending {msg} , at latency : {latency} , to : {peer}")
-                   tasks.append( asyncio.create_task( peer.broadcast(msg , latency) ) )
+                   tasks.append( peer.broadcast(msg , latency) )
 
                if isinstance(msg,Block) :
                    block = msg
                    if self.blockchain.add_block(block) :  # This function returns if it creates a new long chain 
-                      tasks.append( asyncio.create_task( self.create_and_publish_block() )) # Create a block and add to publish thread 
+                        tasks.append( self.create_and_publish_block() ) # Create a block and add to publish thread 
                    else : 
                        self.logger.info(f"Invalid / Non Longest Chain Block {msg}")
-               await asyncio.wait(tasks, return_when=asyncio.ALL_COMPLETED)
+               await asyncio.gather(*tasks)
 
     ### Check if a transaction is valid , by using the balances of the peer from the blockchain 
     def valid_transactions(self, transactions:list[Transaction],n):
         ## should not include coinbase
         ## all chosen transactions should be valid according to last longest block
         final_transactions = set()
-        temp_bal = self.blockchain.balances[ self.blockchain.longest_block.blkid ].copy()
+        temp_bal = np.copy(self.blockchain.balances[ self.blockchain.longest_block.blkid ])
         for i in transactions : 
             if i.sender is None : continue 
             sender , reciever , coins = i.sender.id , i.receiver.id , i.coins 
@@ -416,7 +417,7 @@ class Peer :
         g.graph_attr['rankdir'] = 'RL'
     
         genesis_block_id = GENESIS_BLOCK.blkid
-        Blocks = self.blockchain.blocks_all
+        Blocks = copy(self.blockchain.blocks_all)
 
         longest_chain = set()
         node = self.blockchain.longest_block.blkid
@@ -541,7 +542,6 @@ class Selfish_Miner(Peer):
         return await self.mine_privately()
     
     async def mine_privately(self) :
-        #Get a list of valid transaction , that are not in longest chain 
 
         coinbase_transaction = [ CoinBaseTransaction(self) ] # Add coinbase transaction
         tk = np.random.exponential( interarrival_mean_block_time / self.hash_power ) # random exponentional block publishing time 
@@ -588,11 +588,11 @@ async def input_thread() :
             peer.print_blockchain() ## Print it to a file
         
         mpu_index = random.randint(0, N-1)
-        mpu_0 = peers[mpu_index].blockchain.get_MPU_ratio(mpu_index)
+        mpu_0 = peers[mpu_index].blockchain.get_MPU_ratio(-1)
         mpu_1 = peers[mpu_index].blockchain.get_MPU_ratio(N)
         mpu_2 = peers[mpu_index].blockchain.get_MPU_ratio(N+1)
 
-        print(f'MPU_{mpu_index}_self = {mpu_0}')
+        print(f'MPU_{mpu_index}_overall = {mpu_0}')
         print(f'MPU_{mpu_index}_adv1 = {mpu_1}')
         print(f'MPU_{mpu_index}_adv2 = {mpu_2}')
 
@@ -602,13 +602,8 @@ async def input_thread() :
     os._exit(0)
 
 async def main() :
-    tasks = []
-    tasks.append(asyncio.create_task(input_thread()))
-    for i in range(N):
-        tasks.append(asyncio.create_task(peers[i].generate()))
-    for i in range(N+2):
-        tasks.append(asyncio.create_task(peers[i].create_and_publish_block()))
-
-    await asyncio.wait( tasks, return_when=asyncio.ALL_COMPLETED ) 
+    publish_block = tuple( (peer.create_and_publish_block() for peer in peers) )
+    generate_txns = tuple( (peer.generate() for peer in peers) )
+    await asyncio.gather( input_thread() , *publish_block , *generate_txns )
 
 asyncio.run(main())
