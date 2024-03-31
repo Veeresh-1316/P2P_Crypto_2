@@ -1,14 +1,13 @@
-# CS765 Assignment-1
-## Simulation of a P2P Cryptocurrency Network
+# CS765 Assignment-2
+## Simulating a double selfish mining attack using the P2P Cryptocurrency Network developed in the last assignment
 
 - Based on Python
 - **Hyperparameters:**
-  - N : the number of peers in the network
-  - z0 : the %age of peers with slow network 
-  - z1 : the %age of peers with low cpu power
+  - N : the number of honest peers in the network
+  - h1 : the %age of hashing power with selfish miner 1
+  - h2 : the %age of hashing power with selfish miner 2
   - interarrival_mean_time(Ttx) : roughly represents the inter-time between generation of transactions by a peer
   - inrerarrival_mean_block_time(I) : (I/hash_power) roughly represents the inter-time between creation of blocks by a peer
-  - hash_ratio : peers with high cpu have 10 times more hashing power than others with low cpu
   - maximum_transactions_per_block : maximum allowed transactions per block including coinbase (1000 = 1MB/1KB)
   - COINBASE_COINS_PER_TRANSACTION : 50
 
@@ -72,6 +71,13 @@
   - blockchain - the blockchain as seen by the peer
   - hash_power - %age of hashing power the peer has
 
+- **Selfish_Miner(Peer):**
+  - Class subclasses from Peer class, reprsenting the selfish miners in the network
+  - private_lead - the lead of the private chain of selfish miner over the public chain
+  - private_longest_block - the block on which the selfish miner mines (the last block in private queue OR a block in public chain)
+  - private_queue - the private unpublished blocks mined by the miner
+  
+
 ### Connected graph generation
 
 We used a slightly greedy approach to construct a connected graph where every peer is connected to 3 to 6 peers:
@@ -86,17 +92,12 @@ We used the networkx library to store and print the graph so generated.
 
 ### EventQueue
 
-We are maintaining two event schedulers, one for latency simulation, one for block mining simulation:
-- scheduler = PriorityQueueScheduler()
-  - This is the event handler which handles the event of transaction and block receival by target peer after some calculated latency.
-  - Transactions to be forwarded to other peers connected to you, are put in this event queue to reach the other peer after the specifed latency time
-  - This mimics the transmission latency between the peers
+- We are using python's inbuilt async - await functionalities to mimic the event queue simulation.
+- Whenever a new function must be called parallelly, asyncio.create_task(function()) is called, and the rest is automatically handled.
+- This is needed for Block and Transaction forwardingwith delay to neighbour peers, and also to mimic block creation delay.
+- The delay is simulated by using 'await asyncio.sleep(delay)'.
 
-- block_publisher = PriorityQueueScheduler1()
-  - This is the event handler which simulates the block creation time.
-  - After the random Tk is calculated for a generated block, an event is inserted into the handler which checks the block after Tk time, to see if its still valid to be published into the blockchain
-
-### Working of the Blockchain
+### Working of the Blockchain (HONEST MINER)
 
 - Transaction creation:
   - every peer generates transactions randomly at times chosen from an exponential distribution whose mean tim is Ttx
@@ -112,16 +113,31 @@ We are maintaining two event schedulers, one for latency simulation, one for blo
   - If a peer receives a new block, he checks first if its parent is in the blockchain. If not, he puts it into unadded_transactions to be handled later. If yes, he validates the transactions in the block based on the peer balances at the parent block. If it is valid, it is added into the blockchain, and also blocks in the unadded_list, whose parent is this block, are also similarly validated and added. If it is invalid, the block is dropped and every block in the unadded_list whose parent is this new block are also dropped recursively.
   - If a new valid block added to the blockchain changes the longest chain in the blockchain, updates have to be made. The length and leaf node of longest chain is updated. And also all transactions in blocks in the fork of old longest chain are invalidated (ready to be included in a new block). And all transactions in blocks in new fork thus created are made valid.
 
+### Working of the Blockchain (SELFISH MINER)
+
+- Selfish miner does not create transactions
+- Does not forward transactions
+- Mines blocks privately and stores in a private queue, and publishes them as and when required
+- Private Block Publish:
+  - When the longest public chain changes in length, a release_block() function is called
+  - the lead of private chain over public chain is evaluated
+  - if the lead < 0 => public chain is ahead, starts a new attack on the last block of the longest chain visible
+  - if lead becomes 0, he publishes the blocks in private queue, and continues to mine on top of his own block
+  - if lead becomes 1, he publishes the blocks in private queue, and mines on the longest chain visible, i.e. his own private queue
+  - if lead > 1, he publishes only 1 block from the private queue, and continues building his own private queue
+
 ### The Tree of Blockchain
 At the end of the simulation, the blockchain network thus formed at every peer is printed into a file called 'blockchain_{id}.png', in the 'fig/' directory.
 
 We use Digraph from graphviz library to represent and print the blockchain tree.
+- The honest blocks are represented by 'lightgrey' color, blocks mined by selfish miner 1 by 'lightblue' color and blocks mined by selfish miner 2 by 'red' color, for effective visualization.
+- The blocks in the longest chain for a peer are also bordered 'yellow'.
+- For the selfish miners, the number of unpublished blocks are also displayed
 
 The tree is represented by the **'block_all'** dictionary variable of the Blockchain class for every Peer.
 
 ### Experiments
-Experiments and their results are listed in the report document. The ratio of the number of blocks generated by each node in the Longest Chain of the tree to the total number of blocks it generates at the end of the simulation, is maintained and printed out at the end.
-
-And the relation between the hyperparamters and ratio is observed.
-
-The relation between the hyperparamters and the forks and longest chains are also observed.
+- Experiments and their results are listed in the report document.
+- The number of blocks generated by each node in the Longest Chain of the tree, and the total number of blocks it generates, is maintained and printed periodically.
+- The ratio MPU_node_adv = (Number of block mined by an adversary in final public main chain) / (Total number of blocks mined by this adversary overall) and the ration MPU_node_overall = (Number of block in the final public main chain) / (Total number of blocks generated across all the nodes) are calculated and printed periodically
+- And the relation between the hyperparamters and these ratio are observed.

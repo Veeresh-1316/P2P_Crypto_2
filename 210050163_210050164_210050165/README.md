@@ -4,17 +4,18 @@
 - Veeresh B Patil : 210050163
 
 ## To Run 
-Install graphviz and networkx before running the main.py 
+Install graphviz and networkx before running the start.py 
 >>> pip install graphviz networkx 
 You also need to install graphviz backend for drawing the blockchain to .png : 
 >>> sudo apt install graphviz (Linux)
 
->>> python3 main.py [z0] [z1]
-Eg : python3 main.py 0.4 0.7
+>>> python3 start.py [h1] [h2]
+Eg : python3 start.py 0.4 0.7
 
-You can use python3 main.py --help (To view the arguments)
+You can use python3 start.py --help (To view the arguments)
 
 ## Results 
-You can keyboard interrupt the script after some time.
-After interrupt, 
-You will get result of logs and blockchain png in respective folders (fig & peers)
+You can enter 'p' to (print and continue) or 'e' to (print and end) the process, at any time in between the simulation.
+
+Upon printing, 
+You will get result of blockchain png in respective folders (fig). And, a random peer is picked to find and display the MPU ratios requested.

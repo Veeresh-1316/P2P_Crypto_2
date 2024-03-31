@@ -1,90 +1,943 @@
-Generating by  4 at  0.8650856460008072
-18dfb01af65215d6fa9166716d7a85fb: 4 pays 0 1 coins
-Transaction  18dfb01af65215d6fa9166716d7a85fb: 4 pays 0 1 coins  received by  4 at 0.8660793190001641
-Transaction  18dfb01af65215d6fa9166716d7a85fb: 4 pays 0 1 coins from  4  to  0 with delay  0.29350512508266646 at 0.8661512960006803
-Generating by  2 at  1.142580010000529
-404907c0d4f7e874274b99f819bb9ed3: 2 pays 3 1 coins
-Transaction  404907c0d4f7e874274b99f819bb9ed3: 2 pays 3 1 coins  received by  2 at 1.1432578990006732
-Transaction  404907c0d4f7e874274b99f819bb9ed3: 2 pays 3 1 coins from  2  to  0 with delay  0.33010768569814564 at 1.1433286340006816
-Transaction  18dfb01af65215d6fa9166716d7a85fb: 4 pays 0 1 coins  received by  0 at 1.1601632370002335
-Transaction  18dfb01af65215d6fa9166716d7a85fb: 4 pays 0 1 coins from  0  to  4 with delay  0.2909469659698082 at 1.160285520000798
-Transaction  18dfb01af65215d6fa9166716d7a85fb: 4 pays 0 1 coins from  0  to  2 with delay  0.32948080825073983 at 1.1603516560007847
-Transaction  18dfb01af65215d6fa9166716d7a85fb: 4 pays 0 1 coins from  0  to  3 with delay  0.3069175250458372 at 1.1603786370005764
-Transaction  18dfb01af65215d6fa9166716d7a85fb: 4 pays 0 1 coins from  0  to  1 with delay  0.2908986608579254 at 1.1604007890000503
-Transaction  18dfb01af65215d6fa9166716d7a85fb: 4 pays 0 1 coins  received by  1 at 1.4518095930006893
-Transaction  18dfb01af65215d6fa9166716d7a85fb: 4 pays 0 1 coins from  1  to  0 with delay  0.29092091635060824 at 1.4519064579999394
-Transaction  18dfb01af65215d6fa9166716d7a85fb: 4 pays 0 1 coins  received by  3 at 1.467504648000613
-Transaction  18dfb01af65215d6fa9166716d7a85fb: 4 pays 0 1 coins from  3  to  0 with delay  0.34172272416109206 at 1.4675538020001113
-Transaction  404907c0d4f7e874274b99f819bb9ed3: 2 pays 3 1 coins  received by  0 at 1.47379435700077
-Transaction  404907c0d4f7e874274b99f819bb9ed3: 2 pays 3 1 coins from  0  to  4 with delay  0.2917402670642965 at 1.4738780659999975
-Transaction  404907c0d4f7e874274b99f819bb9ed3: 2 pays 3 1 coins from  0  to  2 with delay  0.30376633414891197 at 1.473910898000213
-Transaction  404907c0d4f7e874274b99f819bb9ed3: 2 pays 3 1 coins from  0  to  3 with delay  0.29283689665230056 at 1.4740697310007818
-Transaction  404907c0d4f7e874274b99f819bb9ed3: 2 pays 3 1 coins from  0  to  1 with delay  0.29329094197575656 at 1.4742317890004415
-Transaction  18dfb01af65215d6fa9166716d7a85fb: 4 pays 0 1 coins  received by  2 at 1.4900041540004167
-Transaction  18dfb01af65215d6fa9166716d7a85fb: 4 pays 0 1 coins from  2  to  0 with delay  0.29451338958412326 at 1.490043888999935
-Transaction  404907c0d4f7e874274b99f819bb9ed3: 2 pays 3 1 coins  received by  4 at 1.765811298000699
-Transaction  404907c0d4f7e874274b99f819bb9ed3: 2 pays 3 1 coins from  4  to  0 with delay  0.29271809185057507 at 1.765914545000669
-Transaction  404907c0d4f7e874274b99f819bb9ed3: 2 pays 3 1 coins  received by  3 at 1.7670839090005757
-Transaction  404907c0d4f7e874274b99f819bb9ed3: 2 pays 3 1 coins from  3  to  0 with delay  0.29241101183454854 at 1.7671187760006433
-Transaction  404907c0d4f7e874274b99f819bb9ed3: 2 pays 3 1 coins  received by  1 at 1.7676847220000127
-Transaction  404907c0d4f7e874274b99f819bb9ed3: 2 pays 3 1 coins from  1  to  0 with delay  0.2930516496885598 at 1.7677166030007356
-Generating by  3 at  2.4159531080003944
-6c4c5dc213508686c744007b5a22dc71: 3 pays 2 1 coins
-Transaction  6c4c5dc213508686c744007b5a22dc71: 3 pays 2 1 coins  received by  3 at 2.4166752020000786
-Transaction  6c4c5dc213508686c744007b5a22dc71: 3 pays 2 1 coins from  3  to  0 with delay  0.32702789956054784 at 2.4167559950001305
-Transaction  6c4c5dc213508686c744007b5a22dc71: 3 pays 2 1 coins  received by  0 at 2.7447188720007034
-Transaction  6c4c5dc213508686c744007b5a22dc71: 3 pays 2 1 coins from  0  to  4 with delay  0.2911406259530769 at 2.74483098500059
-Transaction  6c4c5dc213508686c744007b5a22dc71: 3 pays 2 1 coins from  0  to  2 with delay  0.2998343088384432 at 2.745396351000636
-Transaction  6c4c5dc213508686c744007b5a22dc71: 3 pays 2 1 coins from  0  to  3 with delay  0.3031805257324173 at 2.745443410000007
-Transaction  6c4c5dc213508686c744007b5a22dc71: 3 pays 2 1 coins from  0  to  1 with delay  0.2919214289754569 at 2.7454716640004335
-Transaction  6c4c5dc213508686c744007b5a22dc71: 3 pays 2 1 coins  received by  4 at 3.0366346730006626
-Transaction  6c4c5dc213508686c744007b5a22dc71: 3 pays 2 1 coins from  4  to  0 with delay  0.2918665026164512 at 3.0367437200002314
-Transaction  6c4c5dc213508686c744007b5a22dc71: 3 pays 2 1 coins  received by  1 at 3.0375674570004776
-Transaction  6c4c5dc213508686c744007b5a22dc71: 3 pays 2 1 coins from  1  to  0 with delay  0.29122239341159134 at 3.0376059500003976
-Transaction  6c4c5dc213508686c744007b5a22dc71: 3 pays 2 1 coins  received by  2 at 3.0454715740006577
-Transaction  6c4c5dc213508686c744007b5a22dc71: 3 pays 2 1 coins from  2  to  0 with delay  0.3003270305962906 at 3.0455405660004544
-Generating by  2 at  3.421925903000556
-63df211bc0be3c8612397e5c4ba86770: 2 pays 4 1 coins
-Transaction  63df211bc0be3c8612397e5c4ba86770: 2 pays 4 1 coins  received by  2 at 3.4226034600005732
-Transaction  63df211bc0be3c8612397e5c4ba86770: 2 pays 4 1 coins from  2  to  0 with delay  0.3365998416366166 at 3.4226807470004132
-Transaction  63df211bc0be3c8612397e5c4ba86770: 2 pays 4 1 coins  received by  0 at 3.759856613000011
-Transaction  63df211bc0be3c8612397e5c4ba86770: 2 pays 4 1 coins from  0  to  4 with delay  0.29087820861709435 at 3.7599687960000665
-Transaction  63df211bc0be3c8612397e5c4ba86770: 2 pays 4 1 coins from  0  to  2 with delay  0.3013459948010109 at 3.7600265860000945
-Transaction  63df211bc0be3c8612397e5c4ba86770: 2 pays 4 1 coins from  0  to  3 with delay  0.2958817336155871 at 3.7600482980005836
-Transaction  63df211bc0be3c8612397e5c4ba86770: 2 pays 4 1 coins from  0  to  1 with delay  0.29207101773266436 at 3.7600649290006913
-Transaction  63df211bc0be3c8612397e5c4ba86770: 2 pays 4 1 coins  received by  4 at 4.051818666000145
-Transaction  63df211bc0be3c8612397e5c4ba86770: 2 pays 4 1 coins from  4  to  0 with delay  0.2908287014003617 at 4.05193382500056
-Transaction  63df211bc0be3c8612397e5c4ba86770: 2 pays 4 1 coins  received by  1 at 4.052317214000141
-Transaction  63df211bc0be3c8612397e5c4ba86770: 2 pays 4 1 coins from  1  to  0 with delay  0.29119393199522586 at 4.052359404000526
-Transaction  63df211bc0be3c8612397e5c4ba86770: 2 pays 4 1 coins  received by  3 at 4.056449265000083
-Transaction  63df211bc0be3c8612397e5c4ba86770: 2 pays 4 1 coins from  3  to  0 with delay  0.3367684011557511 at 4.056563552000625
-Generating by  2 at  7.338370512000438
-b33642266d9ffcba0772a27383a0456b: 2 pays 1 1 coins
-Transaction  b33642266d9ffcba0772a27383a0456b: 2 pays 1 1 coins  received by  2 at 7.339131382000232
-Transaction  b33642266d9ffcba0772a27383a0456b: 2 pays 1 1 coins from  2  to  0 with delay  0.3044765556150922 at 7.339200211999923
-Transaction  b33642266d9ffcba0772a27383a0456b: 2 pays 1 1 coins  received by  0 at 7.644210772999941
-Transaction  b33642266d9ffcba0772a27383a0456b: 2 pays 1 1 coins from  0  to  4 with delay  0.2925891464552107 at 7.644437423999989
-Transaction  b33642266d9ffcba0772a27383a0456b: 2 pays 1 1 coins from  0  to  2 with delay  0.31823700849132225 at 7.644497007000609
-Transaction  b33642266d9ffcba0772a27383a0456b: 2 pays 1 1 coins from  0  to  3 with delay  0.2944517347120313 at 7.644518177000464
-Transaction  b33642266d9ffcba0772a27383a0456b: 2 pays 1 1 coins from  0  to  1 with delay  0.290864313257425 at 7.644534518
-Transaction  b33642266d9ffcba0772a27383a0456b: 2 pays 1 1 coins  received by  1 at 7.935930761000236
-Transaction  b33642266d9ffcba0772a27383a0456b: 2 pays 1 1 coins from  1  to  0 with delay  0.292307752191764 at 7.936034709000523
-Transaction  b33642266d9ffcba0772a27383a0456b: 2 pays 1 1 coins  received by  4 at 7.937195776999943
-Transaction  b33642266d9ffcba0772a27383a0456b: 2 pays 1 1 coins from  4  to  0 with delay  0.2911295791135767 at 7.9372277580005175
-Transaction  b33642266d9ffcba0772a27383a0456b: 2 pays 1 1 coins  received by  3 at 7.93913574599992
-Transaction  b33642266d9ffcba0772a27383a0456b: 2 pays 1 1 coins from  3  to  0 with delay  0.30383052783301573 at 7.939172074999988
-Generating by  4 at  9.979470420000325
-384692a81f4fcc689f338409ce4c7a89: 4 pays 3 1 coins
-Transaction  384692a81f4fcc689f338409ce4c7a89: 4 pays 3 1 coins  received by  4 at 9.980162048000238
-Transaction  384692a81f4fcc689f338409ce4c7a89: 4 pays 3 1 coins from  4  to  0 with delay  0.2923465782596722 at 9.980234906000078
-Transaction  384692a81f4fcc689f338409ce4c7a89: 4 pays 3 1 coins  received by  0 at 10.273099044000446
-Transaction  384692a81f4fcc689f338409ce4c7a89: 4 pays 3 1 coins from  0  to  4 with delay  0.29184568783334924 at 10.273216006000439
-Transaction  384692a81f4fcc689f338409ce4c7a89: 4 pays 3 1 coins from  0  to  2 with delay  0.3173500630383645 at 10.27327242299998
-Transaction  384692a81f4fcc689f338409ce4c7a89: 4 pays 3 1 coins from  0  to  3 with delay  0.30257749812933366 at 10.273294295000596
-Transaction  384692a81f4fcc689f338409ce4c7a89: 4 pays 3 1 coins from  0  to  1 with delay  0.29102352900223327 at 10.27331335100007
-Transaction  384692a81f4fcc689f338409ce4c7a89: 4 pays 3 1 coins  received by  1 at 10.564805412000169
-Transaction  384692a81f4fcc689f338409ce4c7a89: 4 pays 3 1 coins from  1  to  0 with delay  0.29312731863871233 at 10.56491782500052
-Transaction  384692a81f4fcc689f338409ce4c7a89: 4 pays 3 1 coins  received by  3 at 10.576041839000027
-Transaction  384692a81f4fcc689f338409ce4c7a89: 4 pays 3 1 coins from  3  to  0 with delay  0.2979511164256928 at 10.576102424000055
-Transaction  384692a81f4fcc689f338409ce4c7a89: 4 pays 3 1 coins  received by  2 at 10.590787750000345
-Transaction  384692a81f4fcc689f338409ce4c7a89: 4 pays 3 1 coins from  2  to  0 with delay  0.325389253860946 at 10.590827365000223
+Press p to print & e to exit :BEFORE
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+UNADDED:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+BEFORE SLEEP
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+UNADDED:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+UNADDED:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+UNADDED:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+UNADDED:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+UNADDED:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+UNADDED:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+UNADDED:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+UNADDED:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+UNADDED:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+UNADDED:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+UNADDED:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+UNADDED:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+UNADDED:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+UNADDED:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+UNADDED:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+UNADDED:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+UNADDED:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+UNADDED:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+UNADDED:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+UNADDED:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+UNADDED:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+UNADDED:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+UNADDED:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+UNADDED:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+UNADDED:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+UNADDED:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+UNADDED:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+UNADDED:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+UNADDED:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+UNADDED:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+UNADDED:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+UNADDED:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+UNADDED:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+UNADDED:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+UNADDED:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+UNADDED:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+AFTER SLEEP
+1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+Adding:  block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+	1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+	2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+ADDING:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1
+2
+3
+4
+5
+	2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+ADDING:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1
+2
+3
+4
+5
+	2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+ADDING:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1
+2
+3
+4
+5
+	2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+ADDING:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1
+2
+3
+4
+5
+	2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+ADDING:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1
+2
+3
+4
+5
+	2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+ADDING:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	6:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	7:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : 694f1c94e97cc9a10786e416f8823aa2
+	5:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	6:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	7:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : 694f1c94e97cc9a10786e416f8823aa2
+	5:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	6:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	7:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : 694f1c94e97cc9a10786e416f8823aa2
+	5:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	6:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	7:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : 694f1c94e97cc9a10786e416f8823aa2
+	5:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	6:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	7:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : 694f1c94e97cc9a10786e416f8823aa2
+	5:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	6:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	7:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : 694f1c94e97cc9a10786e416f8823aa2
+4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+AFTER
+1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+Adding:  block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+	1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+	2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+ADDING:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	6:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	7:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : 694f1c94e97cc9a10786e416f8823aa2
+4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+Adding:  block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+	1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+	2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+ADDING:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	6:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	7:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : 694f1c94e97cc9a10786e416f8823aa2
+4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+Adding:  block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+	1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+	2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+ADDING:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	6:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	7:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : 694f1c94e97cc9a10786e416f8823aa2
+4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+Adding:  block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+	1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+	2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+ADDING:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	6:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	7:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : 694f1c94e97cc9a10786e416f8823aa2
+4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+Adding:  block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+	1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+	2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+ADDING:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	6:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	7:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : 694f1c94e97cc9a10786e416f8823aa2
+4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+Adding:  block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+	1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+	2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+ADDING:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	6:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	7:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : 694f1c94e97cc9a10786e416f8823aa2
+4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+Adding:  block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+	1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+	2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+ADDING:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	6:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	7:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : 694f1c94e97cc9a10786e416f8823aa2
+4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+Adding:  block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+	1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+	2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+ADDING:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	6:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	7:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : 694f1c94e97cc9a10786e416f8823aa2
+4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+Adding:  block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+	1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+	2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+ADDING:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	6:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	7:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : 694f1c94e97cc9a10786e416f8823aa2
+4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+Adding:  block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+	1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+	2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+ADDING:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	6:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	7:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : 694f1c94e97cc9a10786e416f8823aa2
+4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+Adding:  block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+	1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+	2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+ADDING:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	6:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	7:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : 694f1c94e97cc9a10786e416f8823aa2
+4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+Adding:  block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+	1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+	2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+ADDING:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	6:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	7:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : 694f1c94e97cc9a10786e416f8823aa2
+4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+Adding:  block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+	1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+	2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+ADDING:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	6:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	7:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : 694f1c94e97cc9a10786e416f8823aa2
+4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+Adding:  block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+	1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+	2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+ADDING:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	6:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	7:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : 694f1c94e97cc9a10786e416f8823aa2
+4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+Adding:  block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+	1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+	2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+ADDING:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	6:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	7:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : 694f1c94e97cc9a10786e416f8823aa2
+4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+Adding:  block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+	1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+	2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+ADDING:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	6:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	7:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : 694f1c94e97cc9a10786e416f8823aa2
+4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+Adding:  block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+	1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+	2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+ADDING:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	6:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	7:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : 694f1c94e97cc9a10786e416f8823aa2
+4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+Adding:  block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+	1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+	2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+ADDING:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	6:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	7:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : 694f1c94e97cc9a10786e416f8823aa2
+4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+Adding:  block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+	1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+	2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+ADDING:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1
+2
+3
+4
+5
+	2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+ADDING:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1
+2
+3
+4
+5
+	2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+ADDING:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	6:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	7:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : 694f1c94e97cc9a10786e416f8823aa2
+	5:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	6:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	7:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : 694f1c94e97cc9a10786e416f8823aa2
+	5:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	6:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	7:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : 694f1c94e97cc9a10786e416f8823aa2
+4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+Adding:  block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+	1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+	2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+ADDING:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	6:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	7:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : 694f1c94e97cc9a10786e416f8823aa2
+4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+Adding:  block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+	1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+	2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+ADDING:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	6:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	7:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : 694f1c94e97cc9a10786e416f8823aa2
+4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+Adding:  block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+	1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+	2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+ADDING:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	6:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	7:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : 694f1c94e97cc9a10786e416f8823aa2
+4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+Adding:  block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+	1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+	2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+ADDING:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	6:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	7:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : 694f1c94e97cc9a10786e416f8823aa2
+4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+BEFORE
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+Adding:  block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+	1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+	2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+ADDING:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	6:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	7:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : 694f1c94e97cc9a10786e416f8823aa2
+4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+Adding:  block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+	1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+	2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+ADDING:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	6:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	7:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : 694f1c94e97cc9a10786e416f8823aa2
+4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+BEFORE SLEEP
+1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+Adding:  block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+	1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+	2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+ADDING:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	6:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	7:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : 694f1c94e97cc9a10786e416f8823aa2
+4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+Adding:  block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+	1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+	2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+ADDING:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	6:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	7:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : 694f1c94e97cc9a10786e416f8823aa2
+4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+Adding:  block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+	1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+	2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+ADDING:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	6:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	7:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : 694f1c94e97cc9a10786e416f8823aa2
+4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+Adding:  block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+	1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1
+2
+3
+4
+5
+	2:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+ADDING:  block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	3:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	6:  block : 694f1c94e97cc9a10786e416f8823aa2 block : b432c8bfc228d75d78cb6d4b30e6c1bc
+	7:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : 694f1c94e97cc9a10786e416f8823aa2
+4:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+5:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1:  block : 694f1c94e97cc9a10786e416f8823aa2 block : 694f1c94e97cc9a10786e416f8823aa2
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc block : b432c8bfc228d75d78cb6d4b30e6c1bc
+1:  block : b432c8bfc228d75d78cb6d4b30e6c1bc 
