@@ -10,7 +10,7 @@ You also need to install graphviz backend for drawing the blockchain to .png :
 >>> sudo apt install graphviz (Linux)
 
 >>> python3 start.py [h1] [h2]
-Eg : python3 start.py 0.4 0.7
+Eg : python3 start.py 0.2 0.3
 
 You can use python3 start.py --help (To view the arguments)
 
