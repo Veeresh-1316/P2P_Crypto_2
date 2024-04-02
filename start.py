@@ -7,7 +7,7 @@ from graphviz import Digraph
 import numpy as np
 from copy import copy
 import time
-from graph import generate_random_connected_graph
+from graph import generate_graph
 import os 
 
 os.makedirs("peers",exist_ok=True)
@@ -27,7 +27,7 @@ size_of_transaction = 8    # kilo-bits
 max_transactions_per_block = 1000
 COINBASE_COINS_PER_TRANSACTION = 50
 
-simpy_simulation_time = 70 # time to generate transaction 
+transaction_simulation_time = 70 # time to generate transaction 
 full_simulation_time = 100 # Full time to end program 
 h1 = args.h1 # between 0 and 1 
 h2 = args.h2 # between 0 and 1
@@ -585,7 +585,7 @@ class Selfish_Miner(Peer):
 
 
 ### Create a connected graph of peers with given min and max connections / peer . 
-Network = generate_random_connected_graph(N+2)
+Network = generate_graph(N+2)
 
 # N honest miners
 for i in range(N):
@@ -600,24 +600,43 @@ for node in Network.nodes():
 ### Network creation of peer ends 
 
 # THREAD which prints results or ends simulation as and when requested by user
-async def input_thread() : 
-    i = await asyncio.to_thread(input, "Press p to print & e to exit :")
-    while True : 
-        for peer in peers : 
-            peer.print_blockchain() ## Print it to a file
+# async def input_thread() : 
+#     i = await asyncio.to_thread(input, "Press p to print & e to exit :")
+#     while True : 
+#         for peer in peers : 
+#             peer.print_blockchain() ## Print it to a file
         
-        # pick a random honest node and find MPU ratios
-        mpu_index = random.randint(0, N-1)
-        mpu_0 = peers[mpu_index].blockchain.get_MPU_ratio(-1)
-        mpu_1 = peers[mpu_index].blockchain.get_MPU_ratio(N)
-        mpu_2 = peers[mpu_index].blockchain.get_MPU_ratio(N+1)
+#         # pick a random honest node and find MPU ratios
+#         mpu_index = random.randint(0, N-1)
+#         mpu_0 = peers[mpu_index].blockchain.get_MPU_ratio(-1)
+#         mpu_1 = peers[mpu_index].blockchain.get_MPU_ratio(N)
+#         mpu_2 = peers[mpu_index].blockchain.get_MPU_ratio(N+1)
 
-        print(f'MPU_{mpu_index}_overall = {mpu_0}')
-        print(f'MPU_{mpu_index}_adv1 = {mpu_1}')
-        print(f'MPU_{mpu_index}_adv2 = {mpu_2}')
+#         print(f'MPU_{mpu_index}_overall = {mpu_0}')
+#         print(f'MPU_{mpu_index}_adv1 = {mpu_1}')
+#         print(f'MPU_{mpu_index}_adv2 = {mpu_2}')
 
-        if i == "e" : break 
-        i = await asyncio.to_thread(input, "Press p to print & e to exit :")
+#         if i == "e" : break 
+#         i = await asyncio.to_thread(input, "Press p to print & e to exit :")
+#     import os 
+#     os._exit(0)
+
+async def input_thread() :
+    await asyncio.sleep(full_simulation_time)
+
+    for peer in peers : 
+        peer.print_blockchain() ## Print it to a file
+    
+    # pick a random honest node and find MPU ratios
+    mpu_index = random.randint(0, N-1)
+    mpu_0 = peers[mpu_index].blockchain.get_MPU_ratio(-1)
+    mpu_1 = peers[mpu_index].blockchain.get_MPU_ratio(N)
+    mpu_2 = peers[mpu_index].blockchain.get_MPU_ratio(N+1)
+
+    print(f'MPU_{mpu_index}_overall = {mpu_0}')
+    print(f'MPU_{mpu_index}_adv1 = {mpu_1}')
+    print(f'MPU_{mpu_index}_adv2 = {mpu_2}')
+
     import os 
     os._exit(0)
 
